@@ -27,22 +27,23 @@
 <script type="text/javascript" src="JavaScript/myJS.js"></script>
 <script type="text/javascript" src="JavaScript/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="JavaScript/responsive-tables.js"></script>
-<title>水位数据分析</title>
+<title>数据查询</title>
 </head>
 <body>
 	<ul class="breadcrumbs">
 		<li><a href="Welcome.html"><i
 				class="glyphicon glyphicon-home"></i></a> <span
 			class="glyphicon glyphicon-menu-right"></span></li>
-		<li>水位数据分析</li>
+		<li>数据查询</li>
 	</ul>
 	<div id="page-wrapper">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
 
-					<h1 class="page-header">数据分析</h1>
+					<h1 class="page-header" style="margin:20px 0 20px;">数据查询</h1>
 
+				<div style="width: 790px;margin:0px auto;">
 					<div style="float: left; width: 100%;">
 						<div style="float: left; margin-right: 15px;">
 							<label class="searchLabel">起始时间：</label>
@@ -64,7 +65,7 @@
 						</div>
 						<label class="searchLabel">站点：</label>
 						<div class="searchDiv">
-							<div class="input-group" style="margin-right: 30px;">
+							<div class="input-group" >
 								<input type="text" id="o" onkeyup="autoComplete.start(event)"
 									class="form-control" style="border-radius: 0px;"
 									placeholder="搜索站点...">
@@ -79,6 +80,7 @@
 							</div>
 						</div>
 					</div>
+				</div>
 
 					<div id="loding_img" style="margin-top:200px;float: left;text-align: center;width:100%;display:none;">
 						<img src="../MyGraduationProject/Images/loader5.gif"/>
@@ -183,20 +185,19 @@
 																	$('#dataName').html("降水量（mm）");
 																}
 																if(data['flag']!='3'){
-																	result = data['list'];
-																	console.log(result);
-																	var tb = document.getElementById("tb");
-																	for (var i = 0; i < result.length; i++) {
-																		var row = tb.insertRow(tb.rows.length);
-																		var c1 = row.insertCell(0);
-																		c1.innerHTML = i + 1;
-																		var c2 = row.insertCell(1);
-																		c2.innerHTML = station;
-																		var c3 = row.insertCell(2);
-																		c3.innerHTML = result[i][0];
-																		var c4 = row.insertCell(3);
-																		c4.innerHTML = result[i][1];
-																	}
+																result = data['list'];
+																console.log(result);
+																var tb = document.getElementById("tb");
+																for (var i = 0; i < result.length; i++) {
+																	var row = tb.insertRow(tb.rows.length);
+																	var c1 = row.insertCell(0);
+																	c1.innerHTML = i + 1;
+																	var c2 = row.insertCell(1);
+																	c2.innerHTML = station;
+																	var c3 = row.insertCell(2);
+																	c3.innerHTML = result[i][0];
+																	var c4 = row.insertCell(3);
+																	c4.innerHTML = result[i][1];
 																}
 																$('#loding_img').hide();
 																$('#tableWater').show();

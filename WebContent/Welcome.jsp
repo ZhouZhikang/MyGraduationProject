@@ -9,7 +9,7 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <meta name="description" content="">
 <meta name="author" content="">
-<title>登录</title>
+<title>系统简介</title>
 
 <!-- Bootstrap core CSS -->
 
@@ -36,7 +36,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">系统简介</h1>
+					<h1 class="page-header" style="margin:20px 0 20px;">系统简介</h1>
 
 				</div>
 			</div>

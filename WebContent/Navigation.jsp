@@ -34,12 +34,12 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <%--<li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>--%>
-            <li><a href="Welcome.jsp" target="mainFrame"><span class="glyphicon glyphicon-home"></span>主页</a></li>
+            <li><a href="Welcome.jsp" target="mainFrame"><span class="glyphicon glyphicon-home"></span>系统简介</a></li>
             <li><a href="DataEntry.jsp" target="mainFrame"><span class="glyphicon glyphicon-pencil"></span>数据录入</a></li>
-            <li><a href="WaterData.jsp" target="mainFrame"><span class="glyphicon glyphicon-signal"></span>数据分析</a></li>
+            <li><a href="WaterData.jsp" target="mainFrame"><span class="glyphicon glyphicon-signal"></span>数据查询</a></li>
            <!--  <li><a href="RainData.jsp" target="mainFrame"><span class="glyphicon glyphicon-tint"></span>雨量数据分析</a></li> -->
             <li><a href="RealTimeDisplay.jsp" target="mainFrame"><span class="glyphicon glyphicon-map-marker"></span>实时展示</a></li>
-            <li><a href="Classified.jsp" target="mainFrame"><span class="glyphicon glyphicon-list-alt"></span>分类统计</a></li>
+            <li><a href="Classified.jsp" target="mainFrame"><span class="glyphicon glyphicon-list-alt"></span>统计分析</a></li>
             <li><a href="Warning.jsp" target="mainFrame"><span class="glyphicon glyphicon-warning-sign"></span>防汛预警</a></li>
           </ul>
         </div>   

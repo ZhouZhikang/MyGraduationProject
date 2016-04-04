@@ -25,7 +25,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">数据录入</h1>
+					<h1 class="page-header" style="margin:20px 0 20px;">数据录入</h1>
 
 				</div>
 			</div>
