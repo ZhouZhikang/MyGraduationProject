@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:aop="http://www.springframework.org/schema/aop"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xsi:schemaLocation="  
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd  
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd  
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">  
+    <!-- Action -->  
+    
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+         <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+         <property name="url" value="jdbc:sqlserver://10.66.3.118:1433;DatabaseName=MGP;characterEncoding=UTF-8"/>
+         <property name="username" value="sa"/>
+         <property name="password" value="project"/>
+     </bean>
+    
+    <bean id="sessionFactory" 
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"> 
+        <property name="dataSource"> 
+            <ref bean="dataSource"/> 
+        </property> 
+        <property name="mappingResources"> 
+            <list> 
+                <value>com/zzk/bean/User.hbm.xml</value> 
+                <value>com/zzk/bean/M01StStbprpB.hbm.xml</value> 
+				<value>com/zzk/bean/M02StPptnR0.hbm.xml</value> 
+                <value>com/zzk/bean/M02StRiverR0.hbm.xml</value> 
+                <value>com/zzk/bean/M02StRsvrR0.hbm.xml</value> 
+            </list> 
+        </property> 
+        <property name="hibernateProperties"> 
+            <props> 
+                <prop key="hibernate.dialect"> 
+                    org.hibernate.dialect.MySQLDialect 
+                </prop> 
+            </props> 
+        </property> 
+    </bean> 
+    
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <bean id="loginDAO" class="com.zzk.DAO.LoginDAO"> 
+     <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+    <bean id="stationDAO" class="com.zzk.DAO.StationDAO"> 
+     <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+    <bean id="getDataDAO" class="com.zzk.DAO.GetDataDAO"> 
+     <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+    <bean id="getRealTimeDataDAO" class="com.zzk.DAO.RealTimeDAO"> 
+     <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+    <bean id="SpringContextUtil" class="com.zzk.action.SpringContextUtil"></bean>
+    
+    <bean id="loginAction" class="com.zzk.action.LoginAction" scope="prototype">
+    </bean>
+    
+    <bean id="getStationAction" class="com.zzk.action.GetStationAction" scope="prototype">
+    </bean>
+    
+    <bean id="getDataAction" class="com.zzk.action.GetDataAction" scope="prototype">
+    </bean>
+    
+    <bean id="getRealTimeDataAction" class="com.zzk.action.RealTimeAction" scope="prototype">
+    </bean>
+</beans>  

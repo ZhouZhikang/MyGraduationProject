@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-3-23 22:10:38 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.zzk.bean.M01StStbprpB" table="M01_ST_STBPRP_B" schema="dbo" catalog="MGP">
+        <id name="stcd" type="string">
+            <column name="STCD" length="8" />
+            <generator class="assigned" />
+        </id>
+        <property name="stnm" type="string">
+            <column name="STNM" length="30" not-null="true" />
+        </property>
+        <property name="rvnm" type="string">
+            <column name="RVNM" length="30" />
+        </property>
+        <property name="hnnm" type="string">
+            <column name="HNNM" length="30" />
+        </property>
+        <property name="bsnm" type="string">
+            <column name="BSNM" length="30" />
+        </property>
+        <property name="lgtd" type="java.lang.Double">
+            <column name="LGTD" precision="15" scale="0" />
+        </property>
+        <property name="lttd" type="java.lang.Double">
+            <column name="LTTD" precision="15" scale="0" />
+        </property>
+        <property name="stlc" type="string">
+            <column name="STLC" length="30" />
+        </property>
+        <property name="addvcd" type="string">
+            <column name="ADDVCD" length="6" not-null="true" />
+        </property>
+        <property name="mdbz" type="big_decimal">
+            <column name="MDBZ" precision="6" />
+        </property>
+        <property name="mdpr" type="big_decimal">
+            <column name="MDPR" precision="4" />
+        </property>
+        <property name="dtmnm" type="string">
+            <column name="DTMNM" length="16" />
+        </property>
+        <property name="dtmel" type="big_decimal">
+            <column name="DTMEL" precision="7" scale="3" />
+        </property>
+        <property name="sttp" type="string">
+            <column name="STTP" length="2" not-null="true" />
+        </property>
+        <property name="dfrtms" type="java.lang.Byte">
+            <column name="DFRTMS" precision="2" scale="0" />
+        </property>
+        <property name="fritm" type="string">
+            <column name="FRITM" length="32" />
+        </property>
+        <property name="frgrd" type="java.lang.Character">
+            <column name="FRGRD" length="1" />
+        </property>
+        <property name="bgfrym" type="string">
+            <column name="BGFRYM" length="6" />
+        </property>
+        <property name="edfrym" type="string">
+            <column name="EDFRYM" length="6" />
+        </property>
+        <property name="admauth" type="string">
+            <column name="ADMAUTH" length="40" not-null="true" />
+        </property>
+        <property name="stbk" type="java.lang.Character">
+            <column name="STBK" length="1" />
+        </property>
+        <property name="drna" type="java.lang.Integer">
+            <column name="DRNA" precision="7" scale="0" />
+        </property>
+        <property name="phcd" type="string">
+            <column name="PHCD" length="6" />
+        </property>
+        <property name="zhhsDisplayMap" type="java.lang.Short">
+            <column name="ZHHS_DisplayMap" />
+        </property>
+        <property name="isimportant" type="java.lang.Boolean">
+            <column name="ISIMPORTANT" />
+        </property>
+        <property name="jgsw" type="big_decimal">
+            <column name="JGSW" precision="7" />
+        </property>
+        <property name="bzsw" type="big_decimal">
+            <column name="BZSW" precision="7" />
+        </property>
+    </class>
+</hibernate-mapping>

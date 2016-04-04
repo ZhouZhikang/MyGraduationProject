@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-3-23 22:10:38 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.zzk.bean.M02StRsvrR0" table="M02_ST_RSVR_R0" schema="dbo" catalog="MGP">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="stcd" type="string">
+            <column name="STCD" length="8" not-null="true" />
+        </property>
+        <property name="tm" type="timestamp">
+            <column name="TM" length="23" not-null="true" />
+        </property>
+        <property name="rz" type="big_decimal">
+            <column name="RZ" precision="7" />
+        </property>
+        <property name="inq" type="big_decimal">
+            <column name="INQ" precision="9" scale="3" />
+        </property>
+        <property name="w" type="big_decimal">
+            <column name="W" precision="9" scale="3" />
+        </property>
+        <property name="otq" type="big_decimal">
+            <column name="OTQ" precision="9" scale="3" />
+        </property>
+        <property name="rwchrcd" type="java.lang.Character">
+            <column name="RWCHRCD" length="1" />
+        </property>
+        <property name="rwptn" type="java.lang.Character">
+            <column name="RWPTN" length="1" />
+        </property>
+        <property name="inqdr" type="big_decimal">
+            <column name="INQDR" precision="5" />
+        </property>
+        <property name="msqmt" type="java.lang.Character">
+            <column name="MSQMT" length="1" />
+        </property>
+        <property name="err" type="java.lang.Character">
+            <column name="ERR" length="1" />
+        </property>
+        <property name="tstcd" type="string">
+            <column name="tSTCD" length="8" />
+        </property>
+    </class>
+</hibernate-mapping>

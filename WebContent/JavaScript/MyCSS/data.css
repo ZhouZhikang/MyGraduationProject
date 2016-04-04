@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+.searchDiv{
+	margin-bottom: 20px;
+	width: 300px;
+	float:left;
+}
+
+.searchLabel{
+	float: left;
+	line-height:34px;
+}
+
+.auto_hidden {
+    width:206px;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    position:absolute;
+    display:none;
+}
+.auto_show {
+    width:206px;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    position:absolute;
+    z-index:9999; /* 设置对象的层叠顺序 */
+    display:block;
+}
+.auto_onmouseover{
+    color:#ffffff;
+    font-size:14px;
+    padding:5px 10px 5px 10px;
+    background-color:#4795fb;
+    width:100%;
+}
+.auto_onmouseout{
+    color:#000000;
+    width:100%;
+    font-size:14px;
+    padding:5px 10px 5px 10px;
+    background-color:#ffffff;
+}

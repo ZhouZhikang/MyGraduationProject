@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" /> 
+
+    <package name="default" namespace="" extends="json-default">
+		<action name="login" class="loginAction">
+			<result name="success">/Homepage.jsp</result>
+			<result name="error">/Error.jsp</result>
+			<result name="input">/Homepage.jsp</result>
+		</action>
+		<action name="getStation" class="getStationAction">
+			<result type="json">  
+                <param name="excludeNullProperties">true</param>  
+            </result>  
+		</action>
+		<action name="getData" class="getDataAction">
+			<result type="json">  
+                <param name="excludeNullProperties">true</param>  
+            </result>  
+		</action>
+		<action name="getRealTimeData" class="getRealTimeDataAction">
+			<result type="json">  
+                <param name="excludeNullProperties">true</param>  
+            </result>  
+		</action>
+    </package>
+
+
+</struts>

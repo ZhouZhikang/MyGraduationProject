@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-3-23 22:10:38 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.zzk.bean.M02StRiverR0" table="M02_ST_RIVER_R0" schema="dbo" catalog="MGP">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="stcd" type="string">
+            <column name="STCD" length="8" not-null="true" />
+        </property>
+        <property name="tm" type="timestamp">
+            <column name="TM" length="23" not-null="true" />
+        </property>
+        <property name="z" type="big_decimal">
+            <column name="Z" precision="7" />
+        </property>
+        <property name="q" type="big_decimal">
+            <column name="Q" precision="9" scale="3" />
+        </property>
+        <property name="xsa" type="big_decimal">
+            <column name="XSA" precision="9" scale="3" />
+        </property>
+        <property name="xsavv" type="big_decimal">
+            <column name="XSAVV" precision="5" scale="3" />
+        </property>
+        <property name="xsmxv" type="big_decimal">
+            <column name="XSMXV" precision="5" scale="3" />
+        </property>
+        <property name="flwchrcd" type="java.lang.Character">
+            <column name="FLWCHRCD" length="1" />
+        </property>
+        <property name="wptn" type="java.lang.Character">
+            <column name="WPTN" length="1" />
+        </property>
+        <property name="msqmt" type="java.lang.Character">
+            <column name="MSQMT" length="1" />
+        </property>
+        <property name="msamt" type="java.lang.Character">
+            <column name="MSAMT" length="1" />
+        </property>
+        <property name="msvmt" type="java.lang.Character">
+            <column name="MSVMT" length="1" />
+        </property>
+        <property name="err" type="java.lang.Character">
+            <column name="Err" length="1" />
+        </property>
+        <property name="tstcd" type="string">
+            <column name="tSTCD" length="8" />
+        </property>
+    </class>
+</hibernate-mapping>
