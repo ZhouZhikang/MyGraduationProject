@@ -9,7 +9,7 @@
 <script src="/MyGraduationProject/JavaScript/jquery-2.2.1.min.js"></script>
 <script type="text/javascript"
 	src="JavaScript/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
-	<script src="http://cdn.hcharts.cn/highcharts/modules/exporting.js"></script>
+<script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
 <script type="text/javascript"
 	src="JavaScript/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript"
