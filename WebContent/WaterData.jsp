@@ -41,55 +41,58 @@
 			<div class="row">
 				<div class="col-lg-12">
 
-					<h1 class="page-header" style="margin:20px 0 20px;">数据查询</h1>
+					<h1 class="page-header" style="margin: 20px 0 20px;">数据查询</h1>
 
-				<div style="width: 790px;margin:0px auto;">
-					<div style="float: left; width: 100%;">
-						<div style="float: left; margin-right: 15px;">
-							<label class="searchLabel">起始时间：</label>
-							<div class="input-group date form_datetime col-md-1.5"
-								data-link-field="dtp_input1">
-								<input id="datetimepicker" class="form-control" size="16"
-									type="text" style="border-radius: 0px;" value="" readonly>
-							</div>
-							<input type="hidden" id="dtp_input1" value="" /><br />
-						</div>
-						<div style="float: left; margin-right: 15px;">
-							<label class="searchLabel">截止时间：</label>
-							<div class="input-group date form_datetime col-md-1.5"
-								data-link-field="dtp_input1">
-								<input id="datetimepicker2" class="form-control" size="16"
-									type="text" style="border-radius: 0px;" value="" readonly>
-							</div>
-							<input type="hidden" id="dtp_input1" value="" /><br />
-						</div>
-						<label class="searchLabel">站点：</label>
-						<div class="searchDiv">
-							<div class="input-group" >
-								<input type="text" id="o" onkeyup="autoComplete.start(event)"
-									class="form-control" style="border-radius: 0px;"
-									placeholder="搜索站点...">
-								<div class="auto_hidden" id="auto">
-									<!--自动完成 DIV-->
+					<div style="width: 790px; margin: 0px auto;">
+						<div style="float: left; width: 100%;">
+							<div style="float: left; margin-right: 15px;">
+								<label class="searchLabel">起始时间：</label>
+								<div class="input-group date form_datetime col-md-1.5"
+									data-link-field="dtp_input1">
+									<input id="datetimepicker" class="form-control" size="16"
+										type="text" style="border-radius: 0px;" value="" readonly>
 								</div>
-								<span class="input-group-btn">
-									<button class="btn btn-default" id="searchBtn"
-										style="padding-bottom: 7px; padding-top: 7px; border-radius: 0px;"
-										type="button">搜索</button>
-								</span>
+								<input type="hidden" id="dtp_input1" value="" /><br />
+							</div>
+							<div style="float: left; margin-right: 15px;">
+								<label class="searchLabel">截止时间：</label>
+								<div class="input-group date form_datetime col-md-1.5"
+									data-link-field="dtp_input1">
+									<input id="datetimepicker2" class="form-control" size="16"
+										type="text" style="border-radius: 0px;" value="" readonly>
+								</div>
+								<input type="hidden" id="dtp_input1" value="" /><br />
+							</div>
+							<label class="searchLabel">站点：</label>
+							<div class="searchDiv">
+								<div class="input-group">
+									<input type="text" id="o" onkeyup="autoComplete.start(event)"
+										class="form-control" style="border-radius: 0px;"
+										placeholder="搜索站点...">
+									<div class="auto_hidden" id="auto">
+										<!--自动完成 DIV-->
+									</div>
+									<span class="input-group-btn">
+										<button class="btn btn-default" id="searchBtn"
+											style="padding-bottom: 7px; padding-top: 7px; border-radius: 0px;"
+											type="button">搜索</button>
+									</span>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 
-					<div id="loding_img" style="margin-top:200px;float: left;text-align: center;width:100%;display:none;">
-						<img src="../MyGraduationProject/Images/loader5.gif"/>
+					<div id="loding_img"
+						style="margin-top: 200px; float: left; text-align: center; width: 100%; display: none;">
+						<img src="../MyGraduationProject/Images/loader5.gif" />
 					</div>
-					<div id="tableWater" style="float: left;width:100%;display:none">
+					<div id="tableWater"
+						style="float: left; width: 100%; display: none">
 						<h4 class="widgettitle">数据</h4>
-						<table id="dyntable" class="table table-bordered responsive" width="100%">
+						<table id="dyntable" class="table table-bordered responsive"
+							width="100%">
 							<colgroup>
-								<col class="con0" style="align: center; width: 10%"/>
+								<col class="con0" style="align: center; width: 10%" />
 								<col class="con1" />
 								<col class="con0" />
 								<col class="con1" />
@@ -164,67 +167,108 @@
 												alert("请选择站点");
 											} else {
 												$('#loding_img').show();
-												$('#dyntable').dataTable().fnClearTable();
-												$.ajax({
+												$('#dyntable').dataTable()
+														.fnClearTable();
+												$
+														.ajax({
 															type : "POST",
 															dataType : "json",
 															url : "getData.action",
 															data : params,
 															success : function(
 																	data) {
-																if(data['flag']=='1'){
-																	$('.widgettitle').html("河流水位数据");
-																	$('#dataName').html("河流水位（米）");
+																if (data['flag'] == '1') {
+																	$(
+																			'.widgettitle')
+																			.html(
+																					"河流水位数据");
+																	$(
+																			'#dataName')
+																			.html(
+																					"河流水位（米）");
+																} else if (data['flag'] == '0') {
+																	$(
+																			'.widgettitle')
+																			.html(
+																					"水库水位数据");
+																	$(
+																			'#dataName')
+																			.html(
+																					"水库水位（米）");
+																} else if (data['flag'] == '2') {
+																	$(
+																			'.widgettitle')
+																			.html(
+																					"雨量数据");
+																	$(
+																			'#dataName')
+																			.html(
+																					"降水量（mm）");
 																}
-																else if(data['flag']=='0'){
-																	$('.widgettitle').html("水库水位数据");
-																	$('#dataName').html("水库水位（米）");
+																if (data['flag'] != '3') {
+																	result = data['list'];
+																	console
+																			.log(result);
+																	var tb = document
+																			.getElementById("tb");
+																	for (var i = 0; i < result.length; i++) {
+																		var row = tb
+																				.insertRow(tb.rows.length);
+																		var c1 = row
+																				.insertCell(0);
+																		c1.innerHTML = i + 1;
+																		var c2 = row
+																				.insertCell(1);
+																		c2.innerHTML = station;
+																		var c3 = row
+																				.insertCell(2);
+																		c3.innerHTML = result[i][0];
+																		var c4 = row
+																				.insertCell(3);
+																		c4.innerHTML = result[i][1];
+																	}
+																	$(
+																			'#loding_img')
+																			.hide();
+																	$(
+																			'#tableWater')
+																			.show();
+																	$(
+																			'#dyntable')
+																			.dataTable()
+																			.fnDestroy();
+																	$(
+																			'#dyntable')
+																			.dataTable(
+																					{
+																						"sPaginationType" : "full_numbers",
+																						"bDestroy" : true,
+																						"bRetrieve" : true,
+																						"aaSortingFixed" : [ [
+																								0,
+																								'asc' ] ],
+																					});
 																}
-																else if(data['flag']=='2'){
-																	$('.widgettitle').html("雨量数据");
-																	$('#dataName').html("降水量（mm）");
-																}
-																if(data['flag']!='3'){
-																result = data['list'];
-																console.log(result);
-																var tb = document.getElementById("tb");
-																for (var i = 0; i < result.length; i++) {
-																	var row = tb.insertRow(tb.rows.length);
-																	var c1 = row.insertCell(0);
-																	c1.innerHTML = i + 1;
-																	var c2 = row.insertCell(1);
-																	c2.innerHTML = station;
-																	var c3 = row.insertCell(2);
-																	c3.innerHTML = result[i][0];
-																	var c4 = row.insertCell(3);
-																	c4.innerHTML = result[i][1];
-																}
-																$('#loding_img').hide();
-																$('#tableWater').show();
-																$('#dyntable').dataTable().fnDestroy();
-																$('#dyntable').dataTable({
-																	"sPaginationType": "full_numbers",
-															            "bDestroy":true,
-														            "bRetrieve": true, 
-														            "aaSortingFixed": [[0,'asc']],
-														        }); 
 															}
 														});
 
 											}
 
 										});
-						$('.nav-pills li').click(function(){
-			            	$(this).addClass('active').siblings('li').removeClass('active');
-			            	if($(this).children('a').html()=="水位数据"){
-			            		$('#tableWater').show();
-			            		$('#tableRain').hide();
-			            	}
-			            	else{
-			            		$('#tableWater').hide();
-			            		$('#tableRain').show();
-			            	}
-			            })
+						$('.nav-pills li')
+								.click(
+										function() {
+											$(this).addClass('active')
+													.siblings('li')
+													.removeClass('active');
+											if ($(this).children('a').html() == "水位数据") {
+												$('#tableWater').show();
+												$('#tableRain').hide();
+											} else {
+												$('#tableWater').hide();
+												$('#tableRain').show();
+											}
+										})
 					</script>
 
 
