@@ -46,7 +46,7 @@
 	<div style="width: 565px; margin: 0px auto;">
 		<div style="float: left; width: 100%;">
 			<div style="float: left; margin-right: 15px;">
-				<label class="searchLabel">选择月份：</label>
+				<label class="searchLabel">选择年份：</label>
 				<div class="input-group date form_datetime col-md-1.5"
 					data-link-field="dtp_input1">
 					<input id="datetimepicker" class="form-control" size="16"
@@ -73,11 +73,15 @@
 		</div>
 	</div>
 
-	<div class="mydiv" style="display:none;">
+	<div id="nodata"
+		style="background-color: #EEEEEE; margin: 80px 50px; height: 80px; text-align: center; display: none">
+		<h1 style="line-height: 80px">无数据</h1>
+	</div>
 	<div id="loding_img"
-						style="margin-top: 200px; float: left; text-align: center; width: 100%; display: none;">
-						<img src="../MyGraduationProject/Images/loader5.gif" />
-					</div>
+			style="margin-top: 200px; float: left; text-align: center; width: 100%; display: none;">
+			<img src="../MyGraduationProject/Images/loader6.gif" />
+		</div>
+	<div class="mydiv" style="display: none;">
 		<div id="container"
 			style="margin: 20px; width: 100%; height: 400px; margin: 0 auto"></div>
 	</div>
@@ -95,150 +99,198 @@
 		});
 		var autoComplete = new AutoComplete('o', 'auto', datalist);
 		$('#datetimepicker').datetimepicker({
-			format : 'yyyy-mm',
+			format : 'yyyy',
 			weekStart : 1,
 			autoclose : true,
-			startView : 3,
-			minView : 3,
+			startView : 4,
+			minView : 4,
 			forceParse : false,
 			language : 'zh-CN'
 		});
 
-		$('#searchBtn').click(function() {
-			time1 = $('#datetimepicker').val()+"-1";
-			time2 = $('#datetimepicker').val();
-			var year = parseInt(time2.substr(0,4));
-			var month = parseInt(time2.substr(5,2));
-			if(month+1>12){
-				year++;
-				month=1;
-			}
-			else{
-				month++;
-			}
-			time2=year+"-"+month+"-1";
-			var station = $('#o').val();
-			var params = {
-					endTime : time2,
-					startTime : time1,
-					station : station,
-			};
-			if (time1 == '') {
-				alert("请选择一个月份");
-			} else if (station == '') {
-				alert("请选择站点");
-			} else {
-				$('.mydiv').show();
-				$('#loding_img').show();
-				 $.ajax({
-					type : "POST",
-					dataType : "json",
-					url : "getData.action",
-					data : params,
-					success : function(data) {
-						$('#loding_img').hide();
-						if (data['flag'] == '1') {
-							title=station+time1+"到"+time2+"河流水位统计数据";
-							yText="水位（m）";
-						} else if (data['flag'] == '0') {
-							title=station+time1+"到"+time2+"水库水位统计数据";
-							yText="水位（m）";
-						} else if (data['flag'] == '2') {
-							title=station+time1+"到"+time2+"降水量统计数据";
-							yText="降水量";
-						}
-						if(data['flag']!='3'){
-							result = data['list'];
-							var datalist = new Array();
-							for(var i=0;i<result.length;i++){
-								datalist.push(result[i][1]);
+		$('#searchBtn')
+				.click(
+						function() {
+							yearName = $('#datetimepicker').val();
+							time1 = $('#datetimepicker').val() + "-1-1";
+							time2 = $('#datetimepicker').val();
+							var year = parseInt(time2.substr(0, 4));
+							year++;
+							/* 			var month = parseInt(time2.substr(5,2)); */
+							/* if(month+1>12){
+								year++;
+								month=1;
 							}
-							console.log(datalist);
-							$(function() {
-								$('#container').highcharts({
-									chart: {
-										zoomType: 'x',
-										spacingRight: 20
-									},
-									credits: {
-							            enabled: false
-							        },
-									title: {
-										text: '水位'
-									},
-									subtitle: {
-										text: null/* document.ontouchstart === undefined ?
-										'Click and drag in the plot area to zoom in' :
-										'Pinch the chart to zoom in' */
-									},
-									xAxis: {
-										type: title,
-						            title: {
-						            	text: null
-						            }
-						        },
-						        yAxis: {
-						        	title: {
-						        		text: yText,
-						        	},
-						        	plotLines: [{   //一条延伸到整个绘图区的线，标志着轴中一个特定值。
-						                color: '#FB3D01',
-						                dashStyle: 'Dash', //Dash,Dot,Solid,默认Solid
-						                width: 1.5,
-						                value: 5,  //y轴显示位置
-						                zIndex: 5
-						            }]
-						        },
-						        tooltip: {
-						        	shared: true
-						        },
-						        legend: {
-						        	enabled: false
-						        },
-						        plotOptions: {
-						            area: {
-						                fillColor: {
-						                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
-						                    stops: [
-						                        [0, Highcharts.getOptions().colors[0]],
-						                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-						                    ]
-						                },
-						                lineWidth: 1,
-						                marker: {
-						                    enabled: false
-						                },
-						                shadow: false,
-						                states: {
-						                    hover: {
-						                        lineWidth: 1
-						                    }
-						                },
-						                threshold: null
-						            }
-						        },
+							else{
+								month++;
+							} */
+							time2 = year + "-1-1";
+							var station = $('#o').val();
+							var params = {
+								endTime : time2,
+								startTime : time1,
+								station : station,
+							};
+							if (time1 == '') {
+								alert("请选择年份");
+							} else if (station == '') {
+								alert("请选择站点");
+							} else {
+								$('#mynodata').hide();
+								$('.mydiv').hide();
+								$('#nodata').hide();
+								$('#loding_img').show();
+								$
+										.ajax({
+											type : "POST",
+											dataType : "json",
+											url : "getData.action",
+											data : params,
+											success : function(data) {
+												$('#loding_img').hide();
+												if (data['flag'] == '1') {
+													title = station + yearName
+															+ "年全年河流水位统计数据";
+													yText = "水位（m）";
+												} else if (data['flag'] == '0') {
+													title = station + time1
+															+ "到" + time2
+															+ "水库水位统计数据";
+													yText = "水位（m）";
+												} else if (data['flag'] == '2') {
+													title = station + time1
+															+ "到" + time2
+															+ "降水量统计数据";
+													yText = "降水量";
+												}
+												console.log(data['flag']);
+												if (data['flag'] != '3') {
+													$('.mydiv').show();
+													result = data['list'];
+													var datalist = new Array();
+													var timelist = new Array();
+													for (var i = 0; i < result.length; i++) {
+														datalist
+																.push(result[i][1]);
+														var time = result[i][0]
+																.substr(0, 10)
+																+ " "
+																+ result[i][0]
+																		.substr(
+																				11,
+																				5);
+														timelist.push(time);
+													}
+													console.log(datalist);
+													$(function() {
+														$('#container')
+																.highcharts(
+																		{
+																			chart : {
+																				zoomType : 'x',
+																				spacingRight : 20
+																			},
+																			credits : {
+																				enabled : false
+																			},
+																			title : {
+																				text : title
+																			},
+																			subtitle : {
+																				text : null
+																			/* document.ontouchstart === undefined ?
+																													'Click and drag in the plot area to zoom in' :
+																													'Pinch the chart to zoom in' */
+																			},
+																			xAxis : {
+																				categories : timelist,
+																				type : title,
+																				title : {
+																					text : null
+																				}
+																			},
+																			yAxis : {
+																				title : {
+																					text : yText,
+																				},
+																			/* plotLines: [{   //一条延伸到整个绘图区的线，标志着轴中一个特定值。
+																			    color: '#FB3D01',
+																			    dashStyle: 'Dash', //Dash,Dot,Solid,默认Solid
+																			    width: 1.5,
+																			    value: 5,  //y轴显示位置
+																			    zIndex: 5
+																			}] */
+																			},
+																			tooltip : {
+																				shared : true
+																			},
+																			legend : {
+																				enabled : false
+																			},
+																			plotOptions : {
+																				area : {
+																					fillColor : {
+																						linearGradient : {
+																							x1 : 0,
+																							y1 : 0,
+																							x2 : 0,
+																							y2 : 1
+																						},
+																						stops : [
+																								[
+																										0,
+																										Highcharts
+																												.getOptions().colors[0] ],
+																								[
+																										1,
+																										Highcharts
+																												.Color(
+																														Highcharts
+																																.getOptions().colors[0])
+																												.setOpacity(
+																														0)
+																												.get(
+																														'rgba') ] ]
+																					},
+																					lineWidth : 1,
+																					marker : {
+																						enabled : false
+																					},
+																					shadow : false,
+																					states : {
+																						hover : {
+																							lineWidth : 1
+																						}
+																					},
+																					threshold : null
+																				}
+																			},
 
-						        series: [{
-						        	type: 'area',
-						        	name: '水位',
-						        	data: datalist
-						        }/* ,
-						        {	
-						        	type:'line',
-						            name:'基准线',
-						            color:'#FB3D01',
-						            data:line,
-						        	pointInterval: 24 * 3600 * 1000,
-						    		pointStart: Date.UTC(1994, 0, 01),
-						       } */
-						        ]
-						    });
+																			series : [ {
+																				type : 'area',
+																				name : yText,
+																				data : datalist
+																			} /* ,
+																									        {	
+																									        	type:'line',
+																									            name:'基准线',
+																									            color:'#FB3D01',
+																									            data:line,
+																									        	pointInterval: 24 * 3600 * 1000,
+																									    		pointStart: Date.UTC(1994, 0, 01),
+																									       } */
+																			]
+																		});
+													});
+												}
+												else{
+													$('#nodata').show();
+												}
+											}
+
+										});
+							}
 						});
-						}
-					}
-				}); 
-			}
-		});
 
 		Highcharts.createElement('link', {
 			href : 'http://fonts.googleapis.com/css?family=Dosis:400,600',

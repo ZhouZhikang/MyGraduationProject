@@ -160,7 +160,7 @@ body, html, #allmap {
 									console.log(i + "   "
 											+ data['realTimeDataList'][i]);
 									labelDate
-											.push(data['realTimeDataList'][i][0]);
+											.push(data['realTimeDataList'][i][0].substr(0,10)+" "+data['realTimeDataList'][i][0].substr(11,5));
 									DBdata.push(data['realTimeDataList'][i][1]);
 								}
 							}

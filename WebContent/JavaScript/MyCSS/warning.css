@@ -7,3 +7,9 @@ filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,stre
 -webkit-box-shadow: 2px 2px 10px #909090;/*safari或chrome*/
 box-shadow:2px 2px 10px #909090;/*opera或ie9*/
 }
+
+.myNoData{
+	background-color: #EEEEEE;
+	margin:200px 50px;
+	height:80px;
+}

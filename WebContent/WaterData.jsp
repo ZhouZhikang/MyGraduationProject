@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -255,20 +254,6 @@
 											}
 
 										});
-						$('.nav-pills li')
-								.click(
-										function() {
-											$(this).addClass('active')
-													.siblings('li')
-													.removeClass('active');
-											if ($(this).children('a').html() == "水位数据") {
-												$('#tableWater').show();
-												$('#tableRain').hide();
-											} else {
-												$('#tableWater').hide();
-												$('#tableRain').show();
-											}
-										})
 					</script>
 
 
