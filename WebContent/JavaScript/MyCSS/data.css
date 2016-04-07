@@ -1,4 +1,42 @@
 @CHARSET "UTF-8";
+.clearfix:after{content: ".";display: block; height: 0; clear: both; visibility: hidden;}
+
+.myfloat{
+	float: left;
+	width: 100%;
+	margin-top: 30px;
+}
+
+.labelDiv{
+	float: left;
+	text-align: right;
+	width: 150px;
+	margin-right: 20px;
+}
+
+.myLabel{
+	float: right;
+	line-height:34px;
+}
+
+.error_message{
+	float: left;
+	line-height:34px;
+	margin-left: 20px;
+	color:red;
+	display: none;
+}
+
+.no_radius{
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+}
+
+.input_div{
+	float:left;
+	height: 34px;
+}
 
 .searchDiv{
 	margin-bottom: 20px;

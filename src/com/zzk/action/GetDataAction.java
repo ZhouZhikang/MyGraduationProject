@@ -61,10 +61,7 @@ public class GetDataAction extends ActionSupport{
 		
 		public String getData() throws ParseException {
 			dao = (GetDataDAO)SpringContextUtil.getBean("getDataDAO");
-			System.out.println(startTime);
-			System.out.println(endTime);
 			String stationId=dao.getStationId(station);
-			System.out.println(stationId);
 			flag=dao.getExists(stationId);
 			if(flag.equals("1"))
 				list=dao.get_riverData(startTime, endTime, stationId);
