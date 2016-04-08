@@ -113,8 +113,7 @@
 				</div>
 
 				<div id="profile" class="tab-pane">
-					<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla
-						single-origin coffee squid.</p>
+					<p>虽然很想做EXCEL导入，但并不来得及，coming soon…………</p>
 				</div>
 
 

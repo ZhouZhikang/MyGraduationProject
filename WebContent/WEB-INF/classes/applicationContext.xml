@@ -61,6 +61,7 @@
 
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
+	
 	<bean id="loginDAO" class="com.zzk.DAO.LoginDAO">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>

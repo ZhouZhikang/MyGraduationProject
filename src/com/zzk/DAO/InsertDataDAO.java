@@ -15,19 +15,30 @@ public class InsertDataDAO extends HibernateDaoSupport{
 	@Resource private SessionFactory sessionFactory;
 	
 	public void addRiverData(M02StRiverR0 data) {
+		@Transactional
 		try{
-		this.getHibernateTemplate().save(data);
+			getHibernateTemplate().getSessionFactory().getCurrentSession().save(data);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 	
 	public void addRsvrData(M02StRsvrR0 data) {
-		sessionFactory.getCurrentSession().save(data);
+		@Transactional
+		try{
+			getHibernateTemplate().getSessionFactory().getCurrentSession().save(data);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public void addRainData(M02StPptnR0 data) {
-		sessionFactory.getCurrentSession().save(data);
+		@Transactional
+		try{
+			getHibernateTemplate().getSessionFactory().getCurrentSession().save(data);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 }
