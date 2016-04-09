@@ -63,8 +63,12 @@ public class GetDataAction extends ActionSupport{
 			dao = (GetDataDAO)SpringContextUtil.getBean("getDataDAO");
 			String stationId=dao.getStationId(station);
 			flag=dao.getExists(stationId);
-			if(flag.equals("1"))
+			if(flag.equals("1")){
 				list=dao.get_riverData(startTime, endTime, stationId);
+//				for(int i=0;i<list.size();i++){
+//					System.out.println(list.get(i).getWaterLevel()+",");
+//				}
+			}
 			else if(flag.equals("0"))
 				list=dao.get_rsvrData(startTime, endTime, stationId);
 			else if(flag.equals("2")){

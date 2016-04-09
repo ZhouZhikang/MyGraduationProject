@@ -43,13 +43,22 @@
 		</div>
 	</div>
 
-	<div style="width: 565px; margin: 0px auto;">
+	<div style="width: 800px; margin: 0px auto;">
 		<div style="float: left; width: 100%;">
 			<div style="float: left; margin-right: 15px;">
-				<label class="searchLabel">选择年份：</label>
+				<label class="searchLabel">起始时间：</label>
 				<div class="input-group date form_datetime col-md-1.5"
 					data-link-field="dtp_input1">
 					<input id="datetimepicker" class="form-control" size="16"
+						type="text" style="border-radius: 0px;" value="" readonly>
+				</div>
+				<input type="hidden" id="dtp_input1" value="" /><br />
+			</div>
+			<div style="float: left; margin-right: 15px;">
+				<label class="searchLabel">结束时间：</label>
+				<div class="input-group date form_datetime col-md-1.5"
+					data-link-field="dtp_input1">
+					<input id="datetimepicker2" class="form-control" size="16"
 						type="text" style="border-radius: 0px;" value="" readonly>
 				</div>
 				<input type="hidden" id="dtp_input1" value="" /><br />
@@ -99,32 +108,41 @@
 		});
 		var autoComplete = new AutoComplete('o', 'auto', datalist);
 		$('#datetimepicker').datetimepicker({
-			format : 'yyyy',
-			weekStart : 1,
+			language : 'zh-CN',
+			format : "yyyy-mm-dd hh:ii",
 			autoclose : true,
-			startView : 4,
-			minView : 4,
-			forceParse : false,
-			language : 'zh-CN'
+			todayBtn : true,
+			startDate : "1994-03-2 16:05",
+			minuteStep : 10
+		});
+		$('#datetimepicker2').datetimepicker({
+			language : 'zh-CN',
+			format : "yyyy-mm-dd hh:ii",
+			autoclose : true,
+			todayBtn : true,
+			startDate : "1994-03-2 16:05",
+			minuteStep : 10
 		});
 
 		$('#searchBtn')
 				.click(
 						function() {
-							yearName = $('#datetimepicker').val();
+							time1 = $('#datetimepicker').val() ;
+							time2 = $('#datetimepicker2').val();
+							/* yearName = $('#datetimepicker').val();
 							time1 = $('#datetimepicker').val() + "-1-1";
 							time2 = $('#datetimepicker').val();
 							var year = parseInt(time2.substr(0, 4));
 							year++;
-							/* 			var month = parseInt(time2.substr(5,2)); */
-							/* if(month+1>12){
+										var month = parseInt(time2.substr(5,2)); 
+							 if(month+1>12){
 								year++;
 								month=1;
 							}
 							else{
 								month++;
-							} */
-							time2 = year + "-1-1";
+							} 
+							time2 = year + "-1-1"; */
 							var station = $('#o').val();
 							var params = {
 								endTime : time2,
@@ -132,10 +150,14 @@
 								station : station,
 							};
 							if (time1 == '') {
-								alert("请选择年份");
+								alert("请选择起始时间");
+							}
+							else if(time2==''){
+								alert("请选择结束时间");
 							} else if (station == '') {
 								alert("请选择站点");
-							} else {
+							} 
+							else {
 								$('#mynodata').hide();
 								$('.mydiv').hide();
 								$('#nodata').hide();
@@ -149,8 +171,9 @@
 											success : function(data) {
 												$('#loding_img').hide();
 												if (data['flag'] == '1') {
-													title = station + yearName
-															+ "年全年河流水位统计数据";
+													/* title = station + yearName
+															+ "年全年河流水位统计数据"; */
+															title = station + "河流水位统计数据";	
 													yText = "水位（m）";
 												} else if (data['flag'] == '0') {
 													title = station + time1
@@ -163,7 +186,6 @@
 															+ "降水量统计数据";
 													yText = "降水量";
 												}
-												console.log(data['flag']);
 												if (data['flag'] != '3') {
 													$('.mydiv').show();
 													result = data['list'];
@@ -172,6 +194,7 @@
 													for (var i = 0; i < result.length; i++) {
 														datalist
 																.push(result[i][1]);
+														console.log(result[i][1]);
 														var time = result[i][0]
 																.substr(0, 10)
 																+ " "
@@ -181,7 +204,6 @@
 																				5);
 														timelist.push(time);
 													}
-													console.log(datalist);
 													$(function() {
 														$('#container')
 																.highcharts(
