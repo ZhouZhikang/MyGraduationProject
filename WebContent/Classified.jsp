@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -114,32 +115,43 @@
 		<img src="../MyGraduationProject/Images/loader6.gif" />
 	</div>
 	<div class="clearfix myStationInfoDiv">
-		<div style="width:60%;float:left;height: 200px;">
+		<div class="myStationInfo">
 			<table class="table table-bordered">
-                    <tbody>
-                        <tr>
-                            <td>站点编号</td>
-                            <td id="stcd"></td>
-                        </tr>
-                        <tr>
-                            <td>站点名称</td>
-                            <td id="stnm"></td>
-                        </tr>
-                        <tr>
-                            <td>站点地址</td>
-                            <td id="stlc"></td>
-                        </tr>
-                        <tr>
-                            <td>所属部门</td>
-                            <td id="admauth"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                
+				<colgroup>
+                        <col class="con0" />
+                        <col class="con1" />
+                    </colgroup>
+				<tbody>
+					<tr>
+						<td>站点编号</td>
+						<td id="stcd"></td>
+					</tr>
+					<tr>
+						<td>站点名称</td>
+						<td id="stnm"></td>
+					</tr>
+					<tr>
+						<td>站点地址</td>
+						<td id="stlc"></td>
+					</tr>
+					<tr>
+						<td>所属部门</td>
+						<td id="admauth"></td>
+					</tr>
+					<tr>
+						<td>最高值</td>
+						<td id="max"></td>
+					</tr>
+					<tr>
+						<td>最低值</td>
+						<td id="min"></td>
+					</tr>
+				</tbody>
+			</table>
+
 		</div>
-		<div style="width:40%;float:left;height: 200px;">
-			<div id="allmap" style="width:300px;height: 200px;">
-		</div>
+		<div class="myMapInfo">
+			<div id="allmap" class="mapContent"></div>
 		</div>
 	</div>
 	<div class="myChartdiv" style="display: none;">
@@ -241,87 +253,125 @@
 								startTime : time1,
 								station : station,
 							};
-							if ($("#searchType").val() == 1&&$('#datetimepicker').val()=="") {
+							if ($("#searchType").val() == 1
+									&& $('#datetimepicker').val() == "") {
 								alert("请选择年份");
-							} else if ($("#searchType").val() == 2&&$('#datetimepicker').val()=="") {
+							} else if ($("#searchType").val() == 2
+									&& $('#datetimepicker').val() == "") {
 								alert("请选择年份");
-							} else if ($("#searchType").val() == 3&&$('#datetimepicker2').val()=="") {
+							} else if ($("#searchType").val() == 3
+									&& $('#datetimepicker2').val() == "") {
 								alert("请选择月份");
 							} else {
 								$('#mynodata').hide();
 								$('.myChartdiv').hide();
 								$('#nodata').hide();
 								$('#loding_img').show();
-								
-								$.ajax({
+								$('.myStationInfoDiv').hide();
+								$
+										.ajax({
 											type : "POST",
 											dataType : "json",
 											url : "getData.action",
 											data : params,
 											success : function(data) {
 												$('#loding_img').hide();
-												$.ajax({
-													type : "POST",
-													dataType : "json",
-													url : "getStation.action",
-													success : function(data) {
-														var station;
-														var x = 116.32715863448607;
-														var y = 39.990912172420714;
-														var point = new BMap.Point(x,y);
-													    var bm = new BMap.Map("allmap");
-														datalist = data['stations'];
-														bm.centerAndZoom(point, 15);
-														bm.enableScrollWheelZoom(true);
-														for (var i = 0; i < datalist.length; i++) {
-															if(datalist[i]['stnm']==$('#o').val()){
-																station=datalist[i];
-																point = new BMap.Point(datalist[i]['lgtd'],datalist[i]['lttd']);
+												$
+														.ajax({
+															type : "POST",
+															dataType : "json",
+															url : "getStation.action",
+															success : function(
+																	data) {
+																var station;
+																var x = 116.32715863448607;
+																var y = 39.990912172420714;
+																var point = new BMap.Point(
+																		x, y);
+																var bm = new BMap.Map(
+																		"allmap");
+																datalist = data['stations'];
+																bm
+																		.centerAndZoom(
+																				point,
+																				15);
+																bm
+																		.enableScrollWheelZoom(true);
+																for (var i = 0; i < datalist.length; i++) {
+																	if (datalist[i]['stnm'] == $(
+																			'#o')
+																			.val()) {
+																		station = datalist[i];
+																		point = new BMap.Point(
+																				datalist[i]['lgtd'],
+																				datalist[i]['lttd']);
+																	}
+																}
+																translateCallback = function(
+																		data) {
+																	if (data.status === 0) {
+																		var marker = new BMap.Marker(
+																				data.points[0]);
+																		bm
+																				.addOverlay(marker);
+																		bm
+																				.centerAndZoom(
+																						data.points[0],
+																						15);
+																	}
+																};
+																var convertor = new BMap.Convertor();
+																var pointArr = [];
+																pointArr
+																		.push(point);
+																convertor
+																		.translate(
+																				pointArr,
+																				1,
+																				5,
+																				translateCallback);
+																$('#stcd')
+																		.html(
+																				station['stcd']);
+																$('#stnm')
+																		.html(
+																				station['stnm']);
+																$('#stlc')
+																		.html(
+																				station['stlc']);
+																$('#admauth')
+																		.html(
+																				station['admauth']);
+																$('.myStationInfoDiv').show();
 															}
-														}
-														translateCallback = function (data){
-														      if(data.status === 0) {
-														    	  var marker = new BMap.Marker(data.points[0]);
-														    	  bm.addOverlay(marker);
-														    	  bm.centerAndZoom(data.points[0], 15);
-														      }
-														    };
-														var convertor = new BMap.Convertor();
-												        var pointArr = [];
-												        pointArr.push(point);
-												        convertor.translate(pointArr, 1, 5, translateCallback);
-												        $('#stcd').html(station['stcd']);
-												        $('#stnm').html(station['stnm']);
-												        $('#stlc').html(station['stlc']);
-												        $('#admauth').html(station['admauth']);
-												        $('.myInfo').show();
-													}
-											});
+														});
 												if (data['flag'] == '1') {
-													/* title = station + yearName
-															+ "年全年河流水位统计数据"; */
 													title = station
 															+ "河流水位统计数据";
 													yText = "水位（m）";
 												} else if (data['flag'] == '0') {
-													title = station + time1
-															+ "到" + time2
-															+ "水库水位统计数据";
+													title = station + "水库水位统计数据";
 													yText = "水位（m）";
 												} else if (data['flag'] == '2') {
-													title = station + time1
-															+ "到" + time2
-															+ "降水量统计数据";
+													title = station + "降水量统计数据";
 													yText = "降水量";
 												}
 												if (data['flag'] != '3') {
 													result = data['list'];
 													if (result.length != 0) {
 														$('.myChartdiv').show();
-														
+
 														var datalist = new Array();
 														var timelist = new Array();
+														var maxLevel = result[0][1];
+														var minLevel = result[0][1];
 														for (var i = 0; i < result.length; i++) {
+															if (result[i][1] > maxLevel) {
+																maxLevel = result[i][1];
+															}
+															if (result[i][1] < minLevel) {
+																minLevel = result[i][1];
+															}
 															datalist
 																	.push(result[i][1]);
 															/* console
@@ -336,6 +386,8 @@
 																					5);
 															timelist.push(time);
 														}
+														$('#max').html(maxLevel);
+														$('#min').html(minLevel);
 														$(function() {
 															$('#container')
 																	.highcharts(
@@ -425,14 +477,14 @@
 																					name : yText,
 																					data : datalist
 																				} /* ,
-																																																																																	        {	
-																																																																																	        	type:'line',
-																																																																																	            name:'基准线',
-																																																																																	            color:'#FB3D01',
-																																																																																	            data:line,
-																																																																																	        	pointInterval: 24 * 3600 * 1000,
-																																																																																	    		pointStart: Date.UTC(1994, 0, 01),
-																																																																																	       } */
+																																																																																																																							        {	
+																																																																																																																							        	type:'line',
+																																																																																																																							            name:'基准线',
+																																																																																																																							            color:'#FB3D01',
+																																																																																																																							            data:line,
+																																																																																																																							        	pointInterval: 24 * 3600 * 1000,
+																																																																																																																							    		pointStart: Date.UTC(1994, 0, 01),
+																																																																																																																							       } */
 																				]
 																			});
 														});
@@ -536,31 +588,7 @@
 				$('#timepicker3').show();
 			}
 		};
-		
-		
-		/* var x = 116.32715863448607;
-	    var y = 39.990912172420714;
-	    var ggPoint = new BMap.Point(x,y);
-	    //地图初始化
-	    var bm = new BMap.Map("allmap");
-	    bm.centerAndZoom(ggPoint, 15);
-	    bm.addControl(new BMap.NavigationControl());
-	    //坐标转换完之后的回调函数
-	    translateCallback = function (data){
-	      if(data.status === 0) {
-	        var marker = new BMap.Marker(data.points[0]);
-	        bm.addOverlay(marker);
-	        var label = new BMap.Label("转换后的百度坐标（正确）",{offset:new BMap.Size(20,-10)});
-	        marker.setLabel(label); //添加百度label
-	        bm.setCenter(data.points[0]);
-	      }
-	    }
 
-	        var convertor = new BMap.Convertor();
-	        var pointArr = [];
-	        pointArr.push(ggPoint);
-	        convertor.translate(pointArr, 1, 5, translateCallback); */
-		
 	</script>
 </body>
 </html>

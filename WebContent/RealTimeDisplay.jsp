@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -221,7 +223,7 @@ body, html, #allmap {
 		  // 添加文字说明
 		  var t=document.createElement("div");
 		  t.setAttribute('class','zzk_shadow')
-		  t.innerHTML="<div class='input-group' style='filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=3);-moz-box-shadow: 2px 2px 10px #909090;-webkit-box-shadow: 2px 2px 10px #909090;Ωbox-shadow:2px 2px 10px #909090;'><input type='text' id='o' onkeyup='autoComplete.start(event)'class='form-control' style='border-radius: 0px;'placeholder='搜索站点...'><div class='auto_hidden' id='auto'><!--自动完成 DIV--></div><span class='input-group-btn'><button class='btn btn-default' id='searchBtn'style='padding-bottom: 7px; padding-top: 7px; border-radius: 0px;margin-bottom: 0px;'type='button'>搜索</button></span></div>";
+		  t.innerHTML="<div class='input-group my_shadow'><input type='text' id='o' onkeyup='autoComplete.start(event)'class='form-control' style='border-radius: 0px;'placeholder='搜索站点...'><div class='auto_hidden' id='auto'><!--自动完成 DIV--></div><span class='input-group-btn'><button class='btn btn-default' id='searchBtn'style='padding-bottom: 7px; padding-top: 7px; border-radius: 0px;margin-bottom: 0px;'type='button'>搜索</button></span></div>";
 		  div.appendChild(t);
 		  // 设置样式
 			div.className = 'searchDiv'; 

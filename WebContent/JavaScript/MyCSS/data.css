@@ -1,12 +1,6 @@
 @CHARSET "UTF-8";
 .clearfix:after{content: ".";display: block; height: 0; clear: both; visibility: hidden;}
 
-.myStationInfoDiv{
-	width:auto;height:auto;background:#fff;color:#333;margin:80px 50px 20px 50px;
-	padding: 30px 50px 30px 50px;
-	float:left;
-}
-
 .myfloat{
 	float: left;
 	width: 100%;
