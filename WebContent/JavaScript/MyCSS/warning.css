@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
-.mydiv{
-width:auto;height:auto;border:#b2b2b2 1px solid;background:#fff;color:#333;margin:80px 50px 80px 50px;
+.myChartdiv{
+width:auto;height:auto;border:#b2b2b2 1px solid;background:#fff;color:#333;margin:280px 50px 80px 50px;
 padding: 30px 50px 30px 50px;
 filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=3);/*ie*/
 -moz-box-shadow: 2px 2px 10px #909090;/*firefox*/
@@ -12,4 +12,12 @@ box-shadow:2px 2px 10px #909090;/*opera或ie9*/
 	background-color: #EEEEEE;
 	margin:200px 50px;
 	height:80px;
+}
+.myStationInfo{
+	width:60%;
+	float:left;
+}
+.myMapInfo{
+	width:40%;
+	float:left;
 }

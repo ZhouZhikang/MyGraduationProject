@@ -74,10 +74,10 @@
 						</div>
 						<label id="station_error" class="error_message">请选择一个站点</label>
 					</div>
-					<!-- 					<div id="loding_img"
-						style="margin-top: 30px; text-align: center; width: 330px; display: none;">
+					<div id="loding_img"
+						style="margin-top: 80px; text-align: center; width: 330px; display: none;">
 						<img src="../MyGraduationProject/Images/loader28.gif" />
-					</div> -->
+					</div> 
 					<div class="myfloat" style="display: none;">
 						<div class="labelDiv">
 							<label class="myLabel">记录时间</label>
@@ -145,6 +145,7 @@
 				url : "getInsertType.action",
 				data : params,
 				success : function(data) {
+					$('#loding_img').hide();
 					insertFlag=data['insertFlag'];
 					if (data['insertFlag'] == '1') {
 						$('#datatype').html("请输入河流水位数据");

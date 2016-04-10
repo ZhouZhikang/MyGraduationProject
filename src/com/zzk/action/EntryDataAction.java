@@ -83,33 +83,36 @@ public class EntryDataAction extends ActionSupport{
 		System.out.println(insertStation);
 		System.out.println(time);
 		System.out.println(data);
-		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");                
-		 Date date = sdf.parse(time); 
-		System.out.println(date);
+//		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");                
+//		 Date date = sdf.parse(time); 
+//		System.out.println(date);
 		dao = (GetDataDAO)SpringContextUtil.getBean("getDataDAO");
 		String stationId=dao.getStationId(insertStation);
 		idd = (InsertDataDAO)SpringContextUtil.getBean("getInsertDataDAO");
 		if(insertFlag.equals("1")){
-			M02StRiverR0 obj=new M02StRiverR0();
-			obj.setStcd(stationId);
-			obj.setTm(date);
-			obj.setZ(data);
-			idd.addRiverData(obj);
+//			M02StRiverR0 obj=new M02StRiverR0();
+//			obj.setStcd(stationId);
+//			obj.setTm(date);
+//			obj.setZ(data);
+//			idd.addRiverData(obj);
+			idd.addRiverData(stationId,time,data);
 		}
 		if(insertFlag.equals("0")){
-			M02StRsvrR0 obj = new M02StRsvrR0();
-			obj.setStcd(stationId);
-			obj.setTm(date);
-			obj.setRz(data);
-			idd.addRsvrData(obj);
+//			M02StRsvrR0 obj = new M02StRsvrR0();
+//			obj.setStcd(stationId);
+//			obj.setTm(date);
+//			obj.setRz(data);
+//			idd.addRsvrData(obj);
+			idd.addRsvrData(stationId,time,data);
 		}
 		if(insertFlag.equals("2")){
-			M02StPptnR0 obj = new M02StPptnR0();
-			obj.setStcd(stationId);
-			obj.setTm(date);
-			obj.setVal(data);
-			obj.setSubVal(data);
-			idd.addRainData(obj);
+//			M02StPptnR0 obj = new M02StPptnR0();
+//			obj.setStcd(stationId);
+//			obj.setTm(date);
+//			obj.setVal(data);
+//			obj.setSubVal(data);
+//			idd.addRainData(obj);
+			idd.addRainData(stationId,time,data);
 		}
 		return SUCCESS;
 	}

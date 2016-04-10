@@ -37,9 +37,6 @@ public class GetDataDAO extends HibernateDaoSupport{
 		query.setString(0, startTime);
 		query.setString(1, endTime);
 		query.setString(2, station);
-		for(int i=0;i<query.list().size();i++){
-			System.out.println(query.list().get(i)+",");
-		}
 		List<WaterData> list=  query.list();
 		return  list;
 	}

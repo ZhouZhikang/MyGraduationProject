@@ -1,7 +1,11 @@
 package com.zzk.DAO;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
@@ -16,28 +20,32 @@ public class InsertDataDAO extends HibernateDaoSupport{
 	@Resource private SessionFactory sessionFactory;
 	
 	@Transactional
-	public void addRiverData(M02StRiverR0 data) {
+	public void addRiverData(String stationId,String time,BigDecimal data) {
 		try{
-			getHibernateTemplate().getSessionFactory().getCurrentSession().save(data);
+		SQLQuery query  = this.getHibernateTemplate().getSessionFactory().openSession().createSQLQuery("{call addRiverData(?,?,?)}");
+		query.setString(0, stationId);
+		query.setString(1, time);
+		query.setBigDecimal(2, data);
+		query.executeUpdate();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 	@Transactional
-	public void addRsvrData(M02StRsvrR0 data) {
-		try{
-			getHibernateTemplate().getSessionFactory().getCurrentSession().save(data);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	public void addRsvrData(String stationId,String time,BigDecimal data) {
+		SQLQuery query  = this.getHibernateTemplate().getSessionFactory().openSession().createSQLQuery("{call addRsvrData(?,?,?)}");
+		query.setString(0, stationId);
+		query.setString(1, time);
+		query.setBigDecimal(2, data);
+		query.executeUpdate();
 	}
 	@Transactional	
-	public void addRainData(M02StPptnR0 data) {
-		try{
-			getHibernateTemplate().getSessionFactory().getCurrentSession().save(data);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	public void addRainData(String stationId,String time,BigDecimal data) {
+		SQLQuery query  = this.getHibernateTemplate().getSessionFactory().openSession().createSQLQuery("{call addRainData(?,?,?)}");
+		query.setString(0, stationId);
+		query.setString(1, time);
+		query.setBigDecimal(2, data);
+		query.executeUpdate();
 	}
 
 }

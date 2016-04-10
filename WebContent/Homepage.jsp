@@ -6,7 +6,7 @@
 		<frame src="Banner.jsp" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" title="topFrame" />
 	<frameset rows="*" cols="222,*" framespacing="0" frameborder="0" border="0">
 		<frame src="Navigation.jsp" name="leftFrame" scrolling="No" noresize="noresize" id="leftFrame" title="leftFrame" />
-		<frame src="Welcome.jsp" name="mainFrame" id="mainFrame" title="mainFrame"/>
+		<frame src="Welcome.jsp" name="mainFrame" id="mainFrame" title="mainFrame" style="border-left: 1px solid #ccc;"/>
  </frameset>
 </frameset>
 <noframes><body>

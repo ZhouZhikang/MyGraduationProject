@@ -4,6 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <style type="text/css">
+.baidu-maps label {
+  max-width: none;
+}
 body, html, #allmap {
 	width: 100%;
 	height: 100%;
@@ -25,9 +28,18 @@ body, html, #allmap {
 	float: left;
 }
 </style>
+<link href="JavaScript/bootstrap-3.3.5-dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="JavaScript/MyCSS/sb-admin.css" rel="stylesheet">
+<link href="JavaScript/MyCSS/style.default.css" rel="stylesheet">
+<link href="JavaScript/MyCSS/data.css" rel="stylesheet">
+<link
+	href="JavaScript/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"
+	rel="stylesheet">
 <script type="text/javascript"
 	src="http://api.map.baidu.com/api?v=2.0&ak=bfh3Gt7WRh0e9fC8dsujDnDKYVYX7ZvN"></script>
 	<script src="/MyGraduationProject/JavaScript/jquery-2.2.1.min.js"></script>
+	<script type="text/javascript" src="JavaScript/myJS.js"></script>
 <script src="/MyGraduationProject/JavaScript/Chart.js"></script>
 
 <title>添加多个标注点</title>
@@ -78,6 +90,7 @@ body, html, #allmap {
 	            offset: new BMap.Size(20, -10)
 	            });
 	            marker.setLabel(label);
+	            $(".BMapLabel").css("max-width","none");
 	            marker.setTitle(stnm);
 	            marker.addEventListener("click", attribute);
 	            map.addOverlay(marker);
@@ -90,6 +103,7 @@ body, html, #allmap {
 			url : "getStation.action",
 			success : function(data) {
 				datalist = data['stations'];
+				console.log(datalist);
 				for (var i = 0; i < datalist.length; i++) {
 					var point = new BMap.Point(datalist[i]['lgtd'],datalist[i]['lttd']);
 					var stnm = datalist[i]['stnm'];
@@ -189,5 +203,75 @@ body, html, #allmap {
 					}
 				});
 	}
+	
+	function ZoomControl(){
+		  // 默认停靠位置和偏移量
+		  this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+		  this.defaultOffset = new BMap.Size(200, 20);
+		}
+
+		// 通过JavaScript的prototype属性继承于BMap.Control
+		ZoomControl.prototype = new BMap.Control();
+
+		// 自定义控件必须实现自己的initialize方法,并且将控件的DOM元素返回
+		// 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中
+		ZoomControl.prototype.initialize = function(map){
+		  // 创建一个DOM元素
+		  var div = document.createElement("div");
+		  // 添加文字说明
+		  var t=document.createElement("div");
+		  t.setAttribute('class','zzk_shadow')
+		  t.innerHTML="<div class='input-group' style='filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=3);-moz-box-shadow: 2px 2px 10px #909090;-webkit-box-shadow: 2px 2px 10px #909090;Ωbox-shadow:2px 2px 10px #909090;'><input type='text' id='o' onkeyup='autoComplete.start(event)'class='form-control' style='border-radius: 0px;'placeholder='搜索站点...'><div class='auto_hidden' id='auto'><!--自动完成 DIV--></div><span class='input-group-btn'><button class='btn btn-default' id='searchBtn'style='padding-bottom: 7px; padding-top: 7px; border-radius: 0px;margin-bottom: 0px;'type='button'>搜索</button></span></div>";
+		  div.appendChild(t);
+		  // 设置样式
+			div.className = 'searchDiv'; 
+		  // 绑定事件,点击一次放大两级
+		  // 添加DOM元素到地图中
+		  map.getContainer().appendChild(div);
+		  // 将DOM元素返回
+		  return div;
+		}
+		// 创建控件
+		var myZoomCtrl = new ZoomControl();
+		// 添加到地图当中
+		
+		map.addControl(myZoomCtrl);
+		$.ajax({
+			type : "POST",
+			dataType : "json",
+			url : "getStation.action",
+			async : false,
+			success : function(data) {
+				datalist = data['stationNameList'];
+			}
+		});
+		var autoComplete = new AutoComplete('o', 'auto',
+				datalist);
+		  $('#searchBtn').click(function(){
+			  $.ajax({
+					type : "POST",
+					dataType : "json",
+					url : "getStation.action",
+					success : function(data) {
+						datalist = data['stations'];
+						console.log(datalist);
+						for (var i = 0; i < datalist.length; i++) {
+							if(datalist[i]['stnm']==$('#o').val()){
+								var point = new BMap.Point(datalist[i]['lgtd'],datalist[i]['lttd']);
+							}
+						}
+						translateCallback = function (data){
+						      if(data.status === 0) {
+						        map.centerAndZoom(data.points[0], 17);
+						      }
+						    };
+						var convertor = new BMap.Convertor();
+				        var pointArr = [];
+				        pointArr.push(point);
+				        convertor.translate(pointArr, 1, 5, translateCallback);
+					}
+			});
+		  });
+	
 </script>
 
