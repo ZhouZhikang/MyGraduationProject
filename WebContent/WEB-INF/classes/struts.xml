@@ -38,6 +38,11 @@
                 <param name="excludeNullProperties">false</param>  
             </result>  
 		</action>
+		<action name="warningCalculate" class="WarningAction" method="warningCalculate">
+			<result type="json">  
+                <param name="excludeNullProperties">false</param>  
+            </result>  
+		</action>
     </package>
 
 

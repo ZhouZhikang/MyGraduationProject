@@ -31,22 +31,16 @@ public class Main
 			if(max < data[i]) max = data[i];
 		}
 		
-		double[][] inputData = new double[outputdata.length+1][inputCount];
-		double[][] outputData = new double[outputdata.length+1][1];
+		double[][] inputData = new double[data.length-inputCount+1][inputCount];
+		double[][] outputData = new double[data.length-inputCount+1][1];
 		
-		for(int i = 0; i <outputdata.length; i++) {
+		for(int i = 0; i <data.length-inputCount; i++) {
 			for(int j = 0; j < inputCount; j++){
 				inputData[i][j] = transform(data[i+j], min, max);
-				System.out.println("1 "+data[i+j]);
-//				System.out.println(inputData[i][j]);
 			}
 			System.out.println("\n");
-//			for(int j = 0; j <= outputCount-inputCount; j++){
-//				outputData[i][j] = transform(data[i+j+1], min, max);
-//				System.out.println("2 "+data[i+j+1]);
-//			}
-			outputData[i][0] = transform(outputdata[i], min, max);
-			System.out.println("2 "+outputdata[i]);
+			outputData[i][0] = transform(data[i+inputCount], min, max);
+			System.out.println("2 "+data[i+inputCount]);
 			System.out.println("\n");
 		}
 		
@@ -54,7 +48,7 @@ public class Main
 		int times = 0;
 
 		do {
-			int idx = random.nextInt(outputdata.length-1);
+			int idx = random.nextInt(data.length-inputCount-1);
 			bp.train(inputData[idx], outputData[idx]);
 			System.out.format("第%d次训练: %f\n", ++times, bp.optErrSum);
 		} while(bp.optErrSum > 0.00000001);
@@ -66,8 +60,8 @@ public class Main
 		for(int i=0;i<zzk.length;i++){
 			testdata.add(zzk[i]);
 		};
-		double[][] test = new double[outputdata.length][zzk.length];
-		for (int i = 0; i < outputdata.length; i++) {
+		double[][] test = new double[data.length-inputCount][zzk.length];
+		for (int i = 0; i < data.length-inputCount; i++) {
 			for (int j = 0; j < inputCount; j++) {
 				test[i][j] = transform(testdata.get(i + j), min, max);
 			}
@@ -76,6 +70,7 @@ public class Main
 			testdata.add(f);
 			System.out.println(f);
 		}
+
 		
 		
 //		for(int i = 0; i < outputdata.length; i++) {

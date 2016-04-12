@@ -103,4 +103,7 @@
 	<bean id="EntryDataAction" class="com.zzk.action.EntryDataAction"
 		scope="prototype">
 	</bean>
+	<bean id="WarningAction" class="com.zzk.action.WarningAction"
+		scope="prototype">
+	</bean>
 </beans>  

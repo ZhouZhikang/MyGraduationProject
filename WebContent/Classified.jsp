@@ -161,6 +161,8 @@
 	<script type="text/javascript">
 		var title;
 		var yText;
+		var datalist;
+		var isExist=0;
 		$.ajax({
 			type : "POST",
 			dataType : "json",
@@ -262,7 +264,19 @@
 							} else if ($("#searchType").val() == 3
 									&& $('#datetimepicker2').val() == "") {
 								alert("请选择月份");
+							} else if($('#o').val()==""){
+								alert("请选择站点");
 							} else {
+								for(var i=0;i<datalist.length;i++){
+									if($('#o').val()==datalist[i]){
+										isExist=1;
+									}
+								}
+							if(isExist==0){
+								alert("站点不存在!");
+							}
+							else
+							{
 								$('#mynodata').hide();
 								$('.myChartdiv').hide();
 								$('#nodata').hide();
@@ -497,6 +511,7 @@
 											}
 
 										});
+							}
 							}
 						});
 

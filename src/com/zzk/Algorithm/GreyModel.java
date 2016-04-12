@@ -1,7 +1,7 @@
 package com.zzk.Algorithm;
 public class GreyModel {
 
-	public static double GreyModel(double[] x0, int num) {
+	public static double greyModel(double[] x0, int num) {
 		int pre_num = 10;
 		int n = x0.length;
 		int m = n - 1;
@@ -121,8 +121,8 @@ public class GreyModel {
 	public static void main(String[] args) {
 		double[] data = new double[] { 0.0217, 0.0645, 0.0267, 0.0052, 0.2626,
 				0.3850, -0.6515, 0.4909, 0.1326 };
-		for (int i = 0; i < 1000; i++) {
-			System.out.println(GreyModel(data, i)+",");
+		for (int i = 0; i < data.length; i++) {
+			System.out.println(greyModel(data, i)+",");
 		}
 	}
 }

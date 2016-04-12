@@ -114,6 +114,7 @@
 
 					<script type="text/javascript">
 						var datalist;
+						var isExist = 0;
 						$.ajax({
 							type : "POST",
 							dataType : "json",
@@ -165,94 +166,102 @@
 											} else if (station == '') {
 												alert("请选择站点");
 											} else {
-												$('#loding_img').show();
-												$('#dyntable').dataTable()
-														.fnClearTable();
-												$
-														.ajax({
-															type : "POST",
-															dataType : "json",
-															url : "getData.action",
-															data : params,
-															success : function(
-																	data) {
-																if (data['flag'] == '1') {
-																	$(
-																			'.widgettitle')
-																			.html(
-																					"河流水位数据");
-																	$(
-																			'#dataName')
-																			.html(
-																					"河流水位（米）");
-																} else if (data['flag'] == '0') {
-																	$(
-																			'.widgettitle')
-																			.html(
-																					"水库水位数据");
-																	$(
-																			'#dataName')
-																			.html(
-																					"水库水位（米）");
-																} else if (data['flag'] == '2') {
-																	$(
-																			'.widgettitle')
-																			.html(
-																					"雨量数据");
-																	$(
-																			'#dataName')
-																			.html(
-																					"降水量（mm）");
-																}
-																if (data['flag'] != '3') {
-																	result = data['list'];
-																	console
-																			.log(result);
-																	var tb = document
-																			.getElementById("tb");
-																	for (var i = 0; i < result.length; i++) {
-																		var row = tb
-																				.insertRow(tb.rows.length);
-																		var c1 = row
-																				.insertCell(0);
-																		c1.innerHTML = i + 1;
-																		var c2 = row
-																				.insertCell(1);
-																		c2.innerHTML = station;
-																		var c3 = row
-																				.insertCell(2);
-																		c3.innerHTML = result[i][0];
-																		var c4 = row
-																				.insertCell(3);
-																		c4.innerHTML = result[i][1];
+												for (var i = 0; i < datalist.length; i++) {
+													if ($('#o').val() == datalist[i]) {
+														isExist = 1;
+													}
+												}
+												if (isExist == 0) {
+													alert("站点不存在!");
+												} else {
+													$('#loding_img').show();
+													$('#dyntable').dataTable()
+															.fnClearTable();
+													$
+															.ajax({
+																type : "POST",
+																dataType : "json",
+																url : "getData.action",
+																data : params,
+																success : function(
+																		data) {
+																	if (data['flag'] == '1') {
+																		$(
+																				'.widgettitle')
+																				.html(
+																						"河流水位数据");
+																		$(
+																				'#dataName')
+																				.html(
+																						"河流水位（米）");
+																	} else if (data['flag'] == '0') {
+																		$(
+																				'.widgettitle')
+																				.html(
+																						"水库水位数据");
+																		$(
+																				'#dataName')
+																				.html(
+																						"水库水位（米）");
+																	} else if (data['flag'] == '2') {
+																		$(
+																				'.widgettitle')
+																				.html(
+																						"雨量数据");
+																		$(
+																				'#dataName')
+																				.html(
+																						"降水量（mm）");
 																	}
-																	$(
-																			'#loding_img')
-																			.hide();
-																	$(
-																			'#tableWater')
-																			.show();
-																	$(
-																			'#dyntable')
-																			.dataTable()
-																			.fnDestroy();
-																	$(
-																			'#dyntable')
-																			.dataTable(
-																					{
-																						"sPaginationType" : "full_numbers",
-																						"bDestroy" : true,
-																						"bRetrieve" : true,
-																						"aaSortingFixed" : [ [
-																								0,
-																								'asc' ] ],
-																					});
+																	if (data['flag'] != '3') {
+																		result = data['list'];
+																		console
+																				.log(result);
+																		var tb = document
+																				.getElementById("tb");
+																		for (var i = 0; i < result.length; i++) {
+																			var row = tb
+																					.insertRow(tb.rows.length);
+																			var c1 = row
+																					.insertCell(0);
+																			c1.innerHTML = i + 1;
+																			var c2 = row
+																					.insertCell(1);
+																			c2.innerHTML = station;
+																			var c3 = row
+																					.insertCell(2);
+																			c3.innerHTML = result[i][0];
+																			var c4 = row
+																					.insertCell(3);
+																			c4.innerHTML = result[i][1];
+																		}
+																		$(
+																				'#loding_img')
+																				.hide();
+																		$(
+																				'#tableWater')
+																				.show();
+																		$(
+																				'#dyntable')
+																				.dataTable()
+																				.fnDestroy();
+																		$(
+																				'#dyntable')
+																				.dataTable(
+																						{
+																							"sPaginationType" : "full_numbers",
+																							"bDestroy" : true,
+																							"bRetrieve" : true,
+																							"aaSortingFixed" : [ [
+																									0,
+																									'asc' ] ],
+																						});
+																	}
 																}
-															}
-														});
+															});
 
+												}
 											}
-
 										});
 					</script>
 
