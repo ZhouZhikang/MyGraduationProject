@@ -82,23 +82,89 @@ public class WarningAction extends ActionSupport{
 	public String warningCalculate() throws ParseException{
 		String[] str= data1.split(",");
 		String[] str2= data2.split(",");
-		String[] str3= data2.split(",");
+		String[] str3= data3.split(",");
 		double[] dlist1 = new double[str.length];
-		double[] dlist2 = new double[str.length];
+		double[] dlist2 = new double[str2.length];
 		double[] dlist3 = new double[str3.length];
-		gm = new double[str2.length];
+		int count=0;
+//		System.out.println(str.length);
+//		System.out.println(str2.length);
+//		System.out.println(str3.length);
 		for(int i=0;i<str.length;i++){
 			dlist1[i]=Double.parseDouble(str[i]);
 			}
 		for(int i=0;i<str2.length;i++){
 			dlist2[i]=Double.parseDouble(str2[i]);
 			}
-		for (int i = 0; i < str2.length; i++) {
+		gm = new double[dlist2.length+999];
+		for (int i = 0; i < dlist2.length; i++) {
 			gm[i] = GreyModel.greyModel(dlist2, i);
 		}
 		for(int i=0;i<str3.length;i++){
 			dlist3[i]=Double.parseDouble(str3[i]);
 			}
+		int len=dlist1.length-dlist3.length;
+		double[] dlist4=new double[len];
+		System.arraycopy(dlist1, dlist3.length, dlist4, 0, len);
+		
+		double[] g1=new double[dlist2.length];
+		System.arraycopy(gm, 0, g1, 0, g1.length);
+		
+		if(dlist3.length>dlist2.length){
+			count=dlist2.length;
+			double[] test1=new double[count];
+			System.arraycopy(dlist3, dlist3.length-count, test1, 0, test1.length);
+			dlist3=test1;
+		}
+		else{
+			count=dlist3.length;
+			double[] test2=new double[count];
+			System.arraycopy(dlist2, dlist2.length-count, test2, 0, test2.length);
+			dlist2=test2;
+		}
+		
+		int d2len=2000;
+		int d3len=2000;
+		int d4len=1000;
+		int glen=2000;
+		double[] d2=new double[d2len];
+		double[] d3=new double[d3len];
+		double[] d4=new double[d4len];
+		double[] g2=new double[glen];
+		System.arraycopy(dlist2, dlist2.length-d2len, d2, 0, d2.length);
+		System.arraycopy(dlist3, dlist3.length-d3len, d3, 0, d3.length);
+		System.arraycopy(g1, g1.length-glen, g2, 0, g2.length);
+		System.arraycopy(dlist4, 0, d4, 0, d4.length);
+		dlist2=d2;
+		dlist3=d3;
+		dlist4=d4;
+		
+		double[] d5=new double[dlist3.length+dlist4.length];
+		System.arraycopy(dlist3, 0, d5, 0, dlist3.length);
+		System.arraycopy(dlist4, 0, d5, dlist3.length, dlist4.length);
+		dlist1=d5;
+		
+		System.out.println(dlist1.length);
+		System.out.println(dlist2.length);
+		System.out.println(dlist3.length);
+		System.out.println(g2.length);
+		
+//		for(int i=0;i<1000;i++){
+//			System.out.print(dlist3[i]+",");
+//		}
+//		System.out.println("\n");
+//		for(int i=0;i<1500;i++){
+//			System.out.print(dlist1[i]+",");
+//		}
+//		System.out.println("\n");
+//		for(int i=0;i<1000;i++){
+//			System.out.print(dlist2[i]+",");
+//		}
+//		System.out.println("\n");
+//		for(int i=0;i<1000;i++){
+//			System.out.print(gm[i]+",");
+//		}
+		
 		
 		double[] intputdata = dlist3;
 		int inputCount = intputdata.length;
@@ -138,31 +204,19 @@ public class WarningAction extends ActionSupport{
 		for(int i=0;i<zzk.length;i++){
 			testdata.add(zzk[i]);
 		};
-		System.out.println(data.length-inputCount);
-		System.out.println(zzk.length);
 		int num=str2.length-1;
-		try{
 		double[][] test = new double[data.length-inputCount][zzk.length];
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-//		for (int i = 0; i < data.length-inputCount-1000; i++) {
-//			System.out.println(inputCount);
-//			for (int j = 0; j < inputCount; j++) {
-//				test[i][j] = transform(testdata.get(i + j), min, max);
+		for (int i = 0; i < data.length-inputCount; i++) {
+			for (int j = 0; j < inputCount; j++) {
+				test[i][j] = transform(testdata.get(i + j), min, max);
 //				System.out.println(testdata.get(i + j));	
-//			}
-//			for(int m=0;m<test.length;m++){
-//				for(int n=0;n<inputCount;i++){
-//					System.out.println(test[m][n]);	
-//				}
-//			}
-//			double[] output = bp.test(test[i]);
-//			double f = untransform(output[outputCount - 1], min, max);
-//			testdata.add(f);
-//			gm[num] = f;
-//			num++;
-//		}
+			}
+			double[] output = bp.test(test[i]);
+			double f = untransform(output[outputCount - 1], min, max);
+			testdata.add(f);
+			gm[num] = f;
+			num++;
+		}
 
 		
 		return SUCCESS;
