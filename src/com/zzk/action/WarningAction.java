@@ -15,7 +15,20 @@ public class WarningAction extends ActionSupport{
 	private String data2;
 	private String data3;
 	private double[] gm;
+	private double[] bpnn;
 	
+
+	public double[] getBpnn() {
+		return bpnn;
+	}
+
+
+
+	public void setBpnn(double[] bpnn) {
+		this.bpnn = bpnn;
+	}
+
+
 
 	public String getData1() {
 		return data1;
@@ -96,7 +109,7 @@ public class WarningAction extends ActionSupport{
 		for(int i=0;i<str2.length;i++){
 			dlist2[i]=Double.parseDouble(str2[i]);
 			}
-		gm = new double[dlist2.length+999];
+		gm = new double[dlist2.length+499];
 		for (int i = 0; i < dlist2.length; i++) {
 			gm[i] = GreyModel.greyModel(dlist2, i);
 		}
@@ -123,10 +136,10 @@ public class WarningAction extends ActionSupport{
 			dlist2=test2;
 		}
 		
-		int d2len=2000;
-		int d3len=2000;
-		int d4len=1000;
-		int glen=2000;
+		int d2len=1000;
+		int d3len=1000;
+		int d4len=500;
+		int glen=1000;
 		double[] d2=new double[d2len];
 		double[] d3=new double[d3len];
 		double[] d4=new double[d4len];
@@ -145,10 +158,10 @@ public class WarningAction extends ActionSupport{
 		dlist1=d5;
 		
 		System.out.println(dlist1.length);
-		System.out.println(dlist2.length);
-		System.out.println(dlist3.length);
-		System.out.println(g2.length);
-		
+//		System.out.println(dlist2.length);
+//		System.out.println(dlist3.length);
+//		System.out.println(g2.length);
+//		
 //		for(int i=0;i<1000;i++){
 //			System.out.print(dlist3[i]+",");
 //		}
@@ -195,9 +208,11 @@ public class WarningAction extends ActionSupport{
 		do {
 			int idx = random.nextInt(data.length-inputCount-1);
 			bp.train(inputData[idx], outputData[idx]);
-		} while(bp.optErrSum > 0.000001);
+		} while(bp.optErrSum > 0.00000001);
 		
 		System.out.println("训练完毕!!");
+		System.out.println(min);
+		System.out.println(max);
 		
 		List<Double> testdata =new ArrayList<Double>();
 		double[] zzk=dlist2;
@@ -214,6 +229,7 @@ public class WarningAction extends ActionSupport{
 			double[] output = bp.test(test[i]);
 			double f = untransform(output[outputCount - 1], min, max);
 			testdata.add(f);
+			System.out.println(f);
 			gm[num] = f;
 			num++;
 		}

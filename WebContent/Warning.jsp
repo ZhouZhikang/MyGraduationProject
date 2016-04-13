@@ -200,8 +200,6 @@
 																	minLevel = result[i][1];
 																}
 																datalist.push(result[i][1]);
-																var time = result[i][0].substr(0,10)+ " "+ result[i][0].substr(11,5);
-																timelist.push(time);
 																currentMonth=parseInt(result[i][0].substr(5,2));
 																currentDay=parseInt(result[i][0].substr(14,2));
 																if(currentMonth==12){
@@ -232,6 +230,8 @@
 																		result2=data['list'];
 																		for(var i=0;i<result2.length;i++){
 																			datalist2.push(result2[i][1]);
+																			var time = result2[i][0].substr(0,10)+ " "+ result2[i][0].substr(11,5);
+																			timelist.push(time);
 																		}
 																		var testtxt=1;
 																		str = datalist.join(",");
@@ -339,11 +339,11 @@
 																											}
 																										},
 
-																										series : [ {
+																										series : [ /* {
 																											type : 'line',
 																											name : yText,
 																											data : datalist
-																										},
+																										}, */
 																											{
 																												type : 'line',
 																												name : yText,
@@ -351,14 +351,9 @@
 																											},
 																											{
 																												type : 'line',
-																												name : "灰色模型拟合结果",
+																												name : "模型拟合结果",
 																												data : gmlist
 																											},
-																											{
-																												type : 'line',
-																												name : "data1",
-																												data : startMonth
-																											}
 																										]
 																									});
 																				});
