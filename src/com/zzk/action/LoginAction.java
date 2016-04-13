@@ -11,7 +11,15 @@ public class LoginAction extends ActionSupport {
 	private Integer userId;
 	private String userName;
 	private String userPassword;
+	private String status;
 	
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public Integer getUserId() {
 		return userId;
 	}
@@ -31,22 +39,17 @@ public class LoginAction extends ActionSupport {
 		this.userPassword = userPassword;
 	}
 
-	public String execute() {
-//		try {
-//		      ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-//		      loginDAO = (LoginDAO)applicationContext.getBean("loginDAO");
-//		    } catch (RuntimeException e) {
-//		      e.printStackTrace();
-//		    }
+	public String checkLogin() {
 		loginDAO = (LoginDAO)SpringContextUtil.getBean("loginDAO");
 		String pwd=loginDAO.login(userName);
-		if(pwd==null){
-			super.addFieldError("userName", "用户名错误!");
-			return ERROR;
+		if(pwd.equals("")){
+			status="用户名错误";
 		}
-		if (!pwd.equals(userPassword)) {
-			super.addFieldError("userPassword", "密码错误!");
-			return ERROR;
+		else if (!pwd.equals(userPassword)) {
+			status="密码错误";
+		}
+		else{
+			status="验证通过";
 		}
 		return SUCCESS;
 	}

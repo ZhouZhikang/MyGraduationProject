@@ -34,7 +34,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <%--<li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>--%>
-            <li><a href="Welcome.jsp" target="mainFrame"><span class="glyphicon glyphicon-home"></span>系统简介</a></li>
+            <li class="active"><a href="Welcome.jsp" target="mainFrame"><span class="glyphicon glyphicon-home"></span>系统简介</a></li>
             <li><a href="DataEntry.jsp" target="mainFrame"><span class="glyphicon glyphicon-pencil"></span>数据录入</a></li>
             <li><a href="WaterData.jsp" target="mainFrame"><span class="glyphicon glyphicon-signal"></span>数据查询</a></li>
            <!--  <li><a href="RainData.jsp" target="mainFrame"><span class="glyphicon glyphicon-tint"></span>雨量数据分析</a></li> -->

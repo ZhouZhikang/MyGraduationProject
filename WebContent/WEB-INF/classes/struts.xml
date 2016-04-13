@@ -8,10 +8,15 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="true" /> 
 
     <package name="default" namespace="" extends="json-default">
-		<action name="login" class="loginAction">
+	<!-- 	<action name="login" class="loginAction">
 			<result name="success">/Homepage.jsp</result>
 			<result name="error">/Error.jsp</result>
 			<result name="input">/Homepage.jsp</result>
+		</action> -->
+		<action name="login" class="loginAction" method="checkLogin">
+			<result type="json">  
+                <param name="excludeNullProperties">true</param>  
+            </result>  
 		</action>
 		<action name="getStation" class="getStationAction">
 			<result type="json">  

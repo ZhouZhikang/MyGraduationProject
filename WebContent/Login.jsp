@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %> 
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8">
@@ -31,26 +30,22 @@
 
   <body>
 
-    <div class="container">
-		<h1 class="form-signin-heading-h1">城市防汛预警系统</h1>
-      <s:form  action="login" class="form-signin" theme="simple">
+     <div class="container">
+    <h1 class="form-signin-heading-h1">城市防汛预警系统</h1>
+      <div  class="form-signin">
         <h2 class="form-signin-heading">请登录</h2>
-        	<div class="userName_div">
-          		<s:textfield id="loginName" class="form-control" name="userName" placeholder="账号"/>
-          	<div class="nullName">请输入账号</div>
+          <div class="userName_div">
+              <input id="loginName" class="form-control" name="userName" placeholder="账号"/>
+            <div class="nullName">请输入账号</div>
+            <div class="errorName">账号不存在</div>
         </div>
         <div class="userName_div">
-        		<s:password id="loginPwd" class="form-control" name="userPassword" placeholder="密码"/>
-        	<div class="nullPwd">请输入密码</div>
-        	<div class="errorPwd">密码错误</div>
+            <input id="loginPwd" class="form-control" name="userPassword" placeholder="密码"/>
+          <div class="nullPwd">请输入密码</div>
+          <div class="errorPwd">密码错误</div>
         </div>
-        <%--<div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me">记住我
-          </label>
-        </div>--%>
-        <s:submit value="登录" class="btn btn-lg btn btn-success btn-block"></s:submit>
-      </s:form>
+        <button id="login" class="btn btn-lg btn-primary btn-block" style="margin-top: 10px;" >登录</button>
+      </div>
 
     </div> <!-- /container -->
 
@@ -74,6 +69,32 @@
    		$('.nullPwd').hide();
    	}
    });
+    $('#login').click(function(){
+    	params={
+    			userName:$('#loginName').val(),
+    			userPassword: $('#loginPwd').val(),
+    	};
+    	 $.ajax({
+    		type:"POST",
+			dataType:"json",
+			url:"login.action",
+			data:params,
+			success:function(data){
+				$('.errorPwd').hide();
+				$('.errorName').hide();
+				if(data['status']=="用户名错误"){
+					$('.errorName').show();
+				}
+				else if(data['status']=="密码错误"){
+					$('.errorPwd').show();
+				}
+				else if(data['status']=="验证通过"){
+					url= "Homepage.jsp?userName="+$('#loginName').val();
+					location.href=url;
+				}
+			}
+    	}); 
+    });
     </script>
   </body>
 </html>

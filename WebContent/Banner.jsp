@@ -31,17 +31,11 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#0063C9;">
       <div class="container-fluid" >
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" style="color: #FFFFFF" href="#">城市防汛预警系统</a>
+          <a class="navbar-brand" style="color: #FFFFFF" href="Welcome.jsp" target="mainFrame"><img style="float:left;width: 40px;height: 24px;margin:-3px 10px 0px 10px;" src="../MyGraduationProject/Images/hz.png" />城市防汛预警系统</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a style="color: #FFFFFF" href="#">欢迎，周志康</a></li>
+            <!-- <li><a style="color: #FFFFFF" href="#">欢迎，周志康</a></li> -->
           </ul>
           <%--<form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -50,4 +44,11 @@
       </div>
     </nav>
 </body>
+<script type="text/javascript">
+ /*     window.onload=function(){
+    	var str = location.search;
+    	alert(str.split('?')[1]);
+    	alert(1);
+    };  */
+    </script>
 </html>

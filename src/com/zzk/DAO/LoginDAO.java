@@ -24,8 +24,11 @@ public class LoginDAO extends HibernateDaoSupport{
 	public String login(String userName){
 		SQLQuery query  = this.getHibernateTemplate().getSessionFactory().openSession().createSQLQuery("{call get_user(?)}");
 		query.setString(0, userName);
-		List<String> list=  query.list();
-		return list.get(0);
+		if(query.list().size()==0){
+			return "";
+		}
+		else 
+			return (String) query.list().get(0);
 	}
 }
 

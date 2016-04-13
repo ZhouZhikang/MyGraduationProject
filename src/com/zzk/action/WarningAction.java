@@ -221,6 +221,7 @@ public class WarningAction extends ActionSupport{
 		};
 		int num=str2.length-1;
 		double[][] test = new double[data.length-inputCount][zzk.length];
+		bpnn = new double[data.length-inputCount];
 		for (int i = 0; i < data.length-inputCount; i++) {
 			for (int j = 0; j < inputCount; j++) {
 				test[i][j] = transform(testdata.get(i + j), min, max);
@@ -230,8 +231,7 @@ public class WarningAction extends ActionSupport{
 			double f = untransform(output[outputCount - 1], min, max);
 			testdata.add(f);
 			System.out.println(f);
-			gm[num] = f;
-			num++;
+			bpnn[i]=f;
 		}
 
 		

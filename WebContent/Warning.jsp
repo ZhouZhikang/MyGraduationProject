@@ -164,15 +164,15 @@
 												success : function(data) {
 													if (data['flag'] == '1') {
 														title = station
-																+ "河流水位统计数据";
+																+ "河流水位预测数据";
 														yText = "水位（m）";
 													} else if (data['flag'] == '0') {
 														title = station
-																+ "水库水位统计数据";
+																+ "水库水位预测数据";
 														yText = "水位（m）";
 													} else if (data['flag'] == '2') {
 														title = station
-																+ "降水量统计数据";
+																+ "降水量预测数据";
 														yText = "降水量";
 													}
 													if (data['flag'] != '3') {
@@ -216,6 +216,8 @@
 																var result2;
 																time1=year+"-"+month+"-1";
 																time2=monthDay+"-1";
+																console.log(time1);
+																console.log(time2);
 																params = {
 																		endTime : time2,
 																		startTime : time1,
@@ -252,7 +254,7 @@
 																				$('#loding_img').hide();
 																				$('.myChartdiv').show();
 																				var gmlist = new Array();
-																				gmlist=data['gm'];
+																				gmlist=data['bpnn'];
 																				
 																				
 																				$(function() {
@@ -276,11 +278,16 @@
 																																				'Pinch the chart to zoom in' */
 																										},
 																										xAxis : {
-																											categories : timelist,
+																											/* categories : timelist,
 																											type : title,
 																											title : {
 																												text : null
-																											}
+																											} */
+																											 type: 'datetime',
+																									            maxZoom: 3600000, 
+																									            title: {
+																									                text: null
+																									            }
 																										},
 																										yAxis : {
 																											title : {
@@ -344,14 +351,16 @@
 																											name : yText,
 																											data : datalist
 																										}, */
-																											{
+																											/* {
 																												type : 'line',
 																												name : yText,
 																												data : datalist2
-																											},
+																											}, */
 																											{
 																												type : 'line',
 																												name : "模型拟合结果",
+																												pointInterval: 5 * 1000,
+																												pointStart:Date.UTC(year,month,1),
 																												data : gmlist
 																											},
 																										]
