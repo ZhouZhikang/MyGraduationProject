@@ -46,8 +46,9 @@
       </div>
     </div>
 </body>
- <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="JavaScript/jquery-2.2.1.min.js"></script>
+<script type="text/javascript"
+	src="JavaScript/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript">
         $(function () {
             $('div.sidebar li').click(function(){

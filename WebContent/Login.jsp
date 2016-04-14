@@ -31,7 +31,7 @@
   <body>
 
      <div class="container">
-    <h1 class="form-signin-heading-h1">城市防汛预警系统</h1>
+    <h1 class="form-signin-heading-h1">基于大数据的城市防汛预警系统</h1>
       <div  class="form-signin">
         <h2 class="form-signin-heading">请登录</h2>
           <div class="userName_div">
@@ -40,11 +40,13 @@
             <div class="errorName">账号不存在</div>
         </div>
         <div class="userName_div">
-            <input id="loginPwd" class="form-control" name="userPassword" placeholder="密码"/>
+            <input id="loginPwd" class="form-control" type="password" name="userPassword" placeholder="密码"/>
           <div class="nullPwd">请输入密码</div>
           <div class="errorPwd">密码错误</div>
         </div>
-        <button id="login" class="btn btn-lg btn-primary btn-block" style="margin-top: 10px;" >登录</button>
+        <button id="login" class="btn btn-lg btn-success btn-block" style="-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;margin-top: 10px;" >登录</button>
       </div>
 
     </div> <!-- /container -->
@@ -61,6 +63,14 @@
     		$('.nullName').hide();
     	}
     });
+    $('#loginName').focus(function(){
+    	$('.nullName').hide();
+    	$('.errorName').hide();
+    });
+    $('#loginPwd').focus(function(){
+    	$('.nullPwd').hide();
+    	$('.errorPwd').hide();
+    });
     $('#loginPwd').blur(function(){
    	if($('#loginPwd').val()==""){    		
    	$('.nullPwd').show();
@@ -70,30 +80,30 @@
    	}
    });
     $('#login').click(function(){
-    	params={
-    			userName:$('#loginName').val(),
-    			userPassword: $('#loginPwd').val(),
-    	};
-    	 $.ajax({
-    		type:"POST",
-			dataType:"json",
-			url:"login.action",
-			data:params,
-			success:function(data){
-				$('.errorPwd').hide();
-				$('.errorName').hide();
-				if(data['status']=="用户名错误"){
-					$('.errorName').show();
-				}
-				else if(data['status']=="密码错误"){
-					$('.errorPwd').show();
-				}
-				else if(data['status']=="验证通过"){
-					url= "Homepage.jsp?userName="+$('#loginName').val();
-					location.href=url;
-				}
-			}
-    	}); 
+      params={
+          userName:$('#loginName').val(),//获取账号
+          userPassword: $('#loginPwd').val(),//获取密码
+      };
+       $.ajax({
+        type:"POST",
+      dataType:"json",
+      url:"login.action",
+      data:params,
+      success:function(data){
+        $('.errorPwd').hide();
+        $('.errorName').hide();
+        if(data['status']=="用户名错误"){
+          $('.errorName').show();//显示用户名错误提示
+        }
+        else if(data['status']=="密码错误"){
+          $('.errorPwd').show();//显示密码错误提示
+        }
+        else if(data['status']=="验证通过"){
+          url= "Homepage.jsp";
+          location.href=url;//跳转至主页面
+        }
+      }
+      }); 
     });
     </script>
   </body>

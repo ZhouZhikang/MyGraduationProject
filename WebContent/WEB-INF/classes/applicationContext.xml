@@ -106,4 +106,7 @@
 	<bean id="WarningAction" class="com.zzk.action.WarningAction"
 		scope="prototype">
 	</bean>
+	<bean id="GetFileAction" class="com.zzk.action.GetFileAction"
+		scope="prototype">
+	</bean>
 </beans>  

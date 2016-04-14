@@ -36,10 +36,15 @@ body {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
+          -webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
   padding: 10px;
+  margin-top: 10px;
   font-size: 16px;
 }
 .form-signin .form-control:focus {
+	
   z-index: 2;
 }
 .form-signin input[type="email"] {
@@ -68,4 +73,7 @@ body {
 }
 .form-signin .userName_div{
 	 position:relative;
+	 -webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
 }

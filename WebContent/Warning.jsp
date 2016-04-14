@@ -284,7 +284,7 @@
 																												text : null
 																											} */
 																											 type: 'datetime',
-																									            maxZoom: 3600000, 
+																									            maxZoom: 3000000, 
 																									            title: {
 																									                text: null
 																									            }

@@ -20,31 +20,31 @@ public class InsertDataDAO extends HibernateDaoSupport{
 	@Resource private SessionFactory sessionFactory;
 	
 	@Transactional
-	public void addRiverData(String stationId,String time,BigDecimal data) {
+	public void addRiverData(String stationId,String time,double data) {
 		try{
 		SQLQuery query  = this.getHibernateTemplate().getSessionFactory().openSession().createSQLQuery("{call addRiverData(?,?,?)}");
 		query.setString(0, stationId);
 		query.setString(1, time);
-		query.setBigDecimal(2, data);
+		query.setDouble(2, data);
 		query.executeUpdate();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 	@Transactional
-	public void addRsvrData(String stationId,String time,BigDecimal data) {
+	public void addRsvrData(String stationId,String time,double data) {
 		SQLQuery query  = this.getHibernateTemplate().getSessionFactory().openSession().createSQLQuery("{call addRsvrData(?,?,?)}");
 		query.setString(0, stationId);
 		query.setString(1, time);
-		query.setBigDecimal(2, data);
+		query.setDouble(2, data);
 		query.executeUpdate();
 	}
 	@Transactional	
-	public void addRainData(String stationId,String time,BigDecimal data) {
+	public void addRainData(String stationId,String time,double data) {
 		SQLQuery query  = this.getHibernateTemplate().getSessionFactory().openSession().createSQLQuery("{call addRainData(?,?,?)}");
 		query.setString(0, stationId);
 		query.setString(1, time);
-		query.setBigDecimal(2, data);
+		query.setDouble(2, data);
 		query.executeUpdate();
 	}
 

@@ -89,3 +89,10 @@
 	-webkit-box-shadow: 2px 2px 10px #909090;
 	box-shadow:2px 2px 10px #909090;
 }
+.dataExcelEnter{
+	margin: 10px 0px 0px 120px;
+}
+.dataErrorMsg{
+	margin: 10px 0px 0px 120px;
+	color:red;
+}

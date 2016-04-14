@@ -32,7 +32,7 @@ public class GetDataDAO extends HibernateDaoSupport{
 		SQLQuery query  = this.getHibernateTemplate().getSessionFactory().openSession().createSQLQuery("{call get_ifExists(?)}");
 		query.setString(0, stationName);
 		List<String> list=  query.list();
-		return list.get(0);
+			return list.get(0);
 	}
 	
 	public List<WaterData> get_riverData(String startTime,String endTime,String station){

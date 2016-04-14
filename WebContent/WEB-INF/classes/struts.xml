@@ -6,6 +6,7 @@
 <struts>
 
     <constant name="struts.enable.DynamicMethodInvocation" value="true" /> 
+    <constant name="struts.multipart.saveDir " value="/MyGraduationProject/WebContent/Files" />
 
     <package name="default" namespace="" extends="json-default">
 	<!-- 	<action name="login" class="loginAction">
@@ -13,6 +14,18 @@
 			<result name="error">/Error.jsp</result>
 			<result name="input">/Homepage.jsp</result>
 		</action> -->
+		<action name="getFile" class="GetFileAction" method="execute">
+		<interceptor-ref name="fileUpload">
+                <!-- 文件过滤 -->
+                <!-- 文件大小, 以字节为单位 -->
+                <param name="maximumSize">1025956</param>
+            </interceptor-ref>
+            <!-- 默认拦截器必须放在fileUpload之后，否则无效 -->
+            <interceptor-ref name="defaultStack" />
+			<result name="success">/DataEntry.jsp</result>
+			<result name="error">/DataEntry.jsp</result>
+			<result name="input">/DataEntry.jsp</result>
+		</action>
 		<action name="login" class="loginAction" method="checkLogin">
 			<result type="json">  
                 <param name="excludeNullProperties">true</param>  

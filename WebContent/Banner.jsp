@@ -31,7 +31,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#0063C9;">
       <div class="container-fluid" >
         <div class="navbar-header">
-          <a class="navbar-brand" style="color: #FFFFFF" href="Welcome.jsp" target="mainFrame"><img style="float:left;width: 40px;height: 24px;margin:-3px 10px 0px 10px;" src="../MyGraduationProject/Images/hz.png" />城市防汛预警系统</a>
+          <a class="navbar-brand" style="color: #FFFFFF" href="Welcome.jsp" target="mainFrame"><img style="float:left;width: 40px;height: 24px;margin:-3px 10px 0px 10px;" src="../MyGraduationProject/Images/hz.png" />基于大数据的城市防汛预警系统</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
