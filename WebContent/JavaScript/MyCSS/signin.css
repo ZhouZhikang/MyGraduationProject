@@ -3,7 +3,7 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
 /*   background: url(../../Images/1.png) top center no-repeat;  */
-  background-color:#0866c6;
+  background-color:#f5f5f5;
   background-size:cover;
   min-height: 720px;
 }
@@ -11,7 +11,7 @@ body {
 .form-signin-heading-h1{
 	margin-top:60px;
 	margin-bottom: 30px;
-  color:#ffffff;
+  color:#0866c6;
   font-size:50px;
   text-align:center;
 }
@@ -58,8 +58,23 @@ body {
   border-top-right-radius: 0;
 }
 
-.errorName, .errorPwd, .nullPwd,.nullName,.errorName{
+.errorName, .errorPwd, .nullPwd,.nullName,.errorName,.exsitName,.nullSignUpPwd,.nullSignUpPwd2,.nullSignUpName{
+	
 	color:red;
+	font-size:14px;
+	height:40px;
+	margin-right:10px;
+	line-height:42px;
+	text-align:right;
+	position:absolute;
+	right:0;
+	top:0;
+	z-index:99;
+	display:none;
+}
+.availableName{
+	
+	color:#4bd63a;
 	font-size:14px;
 	height:40px;
 	margin-right:10px;

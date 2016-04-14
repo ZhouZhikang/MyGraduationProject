@@ -53,5 +53,23 @@ public class LoginAction extends ActionSupport {
 		}
 		return SUCCESS;
 	}
+	
+	public String checkSame() {
+		loginDAO = (LoginDAO)SpringContextUtil.getBean("loginDAO");
+		String pwd=loginDAO.login(userName);
+		if(pwd.equals("")){
+			status="0";
+		}
+		else{
+			status="1";
+		}
+		return SUCCESS;
+	}
+	
+	public String signUp() {
+		loginDAO = (LoginDAO)SpringContextUtil.getBean("loginDAO");
+		loginDAO.signUp(userName, userPassword);
+		return SUCCESS;
+	}
 
 }

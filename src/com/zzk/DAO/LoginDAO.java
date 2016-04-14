@@ -30,6 +30,13 @@ public class LoginDAO extends HibernateDaoSupport{
 		else 
 			return (String) query.list().get(0);
 	}
+	
+	public void signUp(String userName,String userPwd){
+		SQLQuery query  = this.getHibernateTemplate().getSessionFactory().openSession().createSQLQuery("{call signUp(?,?)}");
+		query.setString(0, userName);
+		query.setString(1, userPwd);
+		query.executeUpdate();
+	}
 }
 
 

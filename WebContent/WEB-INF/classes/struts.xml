@@ -5,63 +5,71 @@
 
 <struts>
 
-    <constant name="struts.enable.DynamicMethodInvocation" value="true" /> 
-    <constant name="struts.multipart.saveDir " value="/MyGraduationProject/WebContent/Files" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.multipart.saveDir " value="/MyGraduationProject/WebContent/Files" />
 
-    <package name="default" namespace="" extends="json-default">
-	<!-- 	<action name="login" class="loginAction">
-			<result name="success">/Homepage.jsp</result>
-			<result name="error">/Error.jsp</result>
-			<result name="input">/Homepage.jsp</result>
-		</action> -->
+	<package name="default" namespace="" extends="json-default">
+		<!-- <action name="login" class="loginAction"> <result name="success">/Homepage.jsp</result> 
+			<result name="error">/Error.jsp</result> <result name="input">/Homepage.jsp</result> 
+			</action> -->
 		<action name="getFile" class="GetFileAction" method="execute">
-		<interceptor-ref name="fileUpload">
-                <!-- 文件过滤 -->
-                <!-- 文件大小, 以字节为单位 -->
-                <param name="maximumSize">1025956</param>
-            </interceptor-ref>
-            <!-- 默认拦截器必须放在fileUpload之后，否则无效 -->
-            <interceptor-ref name="defaultStack" />
+			<interceptor-ref name="fileUpload">
+				<!-- 文件过滤 -->
+				<!-- 文件大小, 以字节为单位 -->
+				<param name="maximumSize">1025956</param>
+			</interceptor-ref>
+			<!-- 默认拦截器必须放在fileUpload之后，否则无效 -->
+			<interceptor-ref name="defaultStack" />
 			<result name="success">/DataEntry.jsp</result>
 			<result name="error">/DataEntry.jsp</result>
 			<result name="input">/DataEntry.jsp</result>
 		</action>
 		<action name="login" class="loginAction" method="checkLogin">
-			<result type="json">  
-                <param name="excludeNullProperties">true</param>  
-            </result>  
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		<action name="checkSame" class="loginAction" method="checkSame">
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		<action name="signUp" class="loginAction" method="signUp">
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+			</result>
 		</action>
 		<action name="getStation" class="getStationAction">
-			<result type="json">  
-                <param name="excludeNullProperties">true</param>  
-            </result>  
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+			</result>
 		</action>
 		<action name="getData" class="getDataAction">
-			<result type="json">  
-                <param name="excludeNullProperties">true</param>  
-            </result>  
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+			</result>
 		</action>
 		<action name="getRealTimeData" class="getRealTimeDataAction">
-			<result type="json">  
-                <param name="excludeNullProperties">true</param>  
-            </result>  
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+			</result>
 		</action>
 		<action name="getInsertType" class="EntryDataAction" method="getInsertType">
-			<result type="json">  
-                <param name="excludeNullProperties">false</param>  
-            </result>  
+			<result type="json">
+				<param name="excludeNullProperties">false</param>
+			</result>
 		</action>
 		<action name="insertData" class="EntryDataAction" method="insertData">
-			<result type="json">  
-                <param name="excludeNullProperties">false</param>  
-            </result>  
+			<result type="json">
+				<param name="excludeNullProperties">false</param>
+			</result>
 		</action>
 		<action name="warningCalculate" class="WarningAction" method="warningCalculate">
-			<result type="json">  
-                <param name="excludeNullProperties">false</param>  
-            </result>  
+			<result type="json">
+				<param name="excludeNullProperties">false</param>
+			</result>
 		</action>
-    </package>
+	</package>
 
 
 </struts>
