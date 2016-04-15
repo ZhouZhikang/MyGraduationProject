@@ -403,104 +403,80 @@
 														$('#max').html(maxLevel);
 														$('#min').html(minLevel);
 														$(function() {
-															$('#container')
-																	.highcharts(
-																			{
-																				chart : {
-																					zoomType : 'x',
-																					spacingRight : 20
-																				},
-																				credits : {
-																					enabled : false
-																				},
-																				title : {
-																					text : title
-																				},
-																				subtitle : {
-																					text : null
-																				/* document.ontouchstart === undefined ?
-																														'Click and drag in the plot area to zoom in' :
-																														'Pinch the chart to zoom in' */
-																				},
-																				xAxis : {
-																					categories : timelist,
-																					type : title,
-																					title : {
-																						text : null
-																					}
-																				},
-																				yAxis : {
-																					title : {
-																						text : yText,
-																					},
-																				/* plotLines: [{   //一条延伸到整个绘图区的线，标志着轴中一个特定值。
-																				    color: '#FB3D01',
-																				    dashStyle: 'Dash', //Dash,Dot,Solid,默认Solid
-																				    width: 1.5,
-																				    value: 5,  //y轴显示位置
-																				    zIndex: 5
-																				}] */
-																				},
-																				tooltip : {
-																					shared : true
-																				},
-																				legend : {
-																					enabled : false
-																				},
-																				plotOptions : {
-																					area : {
-																						fillColor : {
-																							linearGradient : {
-																								x1 : 0,
-																								y1 : 0,
-																								x2 : 0,
-																								y2 : 1
-																							},
-																							stops : [
-																									[
-																											0,
-																											Highcharts
-																													.getOptions().colors[0] ],
-																									[
-																											1,
-																											Highcharts
-																													.Color(
-																															Highcharts
-																																	.getOptions().colors[0])
-																													.setOpacity(
-																															0)
-																													.get(
-																															'rgba') ] ]
-																						},
-																						lineWidth : 1,
-																						marker : {
-																							enabled : false
-																						},
-																						shadow : false,
-																						states : {
-																							hover : {
-																								lineWidth : 1
-																							}
-																						},
-																						threshold : null
-																					}
-																				},
+														    $('#container')
+														        .highcharts({
+														            chart: {
+														                zoomType: 'x',
+														                spacingRight: 20
+														            },
+														            credits: {
+														                enabled: false
+														            },
+														            title: {
+														                text: title
+														            },
+														            subtitle: {
+														                text: null
+														            },
+														            xAxis: {
+														                categories: timelist,
+														                type: title,
+														                title: {
+														                    text: null
+														                }
+														            },
+														            yAxis: {
+														                title: {
+														                    text: yText,
+														                },
+														            },
+														            tooltip: {
+														                shared: true
+														            },
+														            legend: {
+														                enabled: false
+														            },
+														            plotOptions: {
+														                area: {
+														                    fillColor: {
+														                        linearGradient: {
+														                            x1: 0,
+														                            y1: 0,
+														                            x2: 0,
+														                            y2: 1
+														                        },
+														                        stops: [
+														                            [
+														                                0,
+														                                Highcharts.getOptions().colors[0]
+														                            ],
+														                            [
+														                                1,
+														                                Highcharts.Color(
+														                                    Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')
+														                            ]
+														                        ]
+														                    },
+														                    lineWidth: 1,
+														                    marker: {
+														                        enabled: false
+														                    },
+														                    shadow: false,
+														                    states: {
+														                        hover: {
+														                            lineWidth: 1
+														                        }
+														                    },
+														                    threshold: null
+														                }
+														            },
 
-																				series : [ {
-																					type : 'area',
-																					name : yText,
-																					data : datalist
-																				} /* ,
-																																																																																																																							        {	
-																																																																																																																							        	type:'line',
-																																																																																																																							            name:'基准线',
-																																																																																																																							            color:'#FB3D01',
-																																																																																																																							            data:line,
-																																																																																																																							        	pointInterval: 24 * 3600 * 1000,
-																																																																																																																							    		pointStart: Date.UTC(1994, 0, 01),
-																																																																																																																							       } */
-																				]
-																			});
+														            series: [{
+														                type: 'area',
+														                name: yText,
+														                data: datalist
+														            }]
+														        });
 														});
 													} else {
 														$('#nodata').show();

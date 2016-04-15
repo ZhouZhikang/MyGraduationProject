@@ -68,7 +68,7 @@
 							<input id="signUpName" class="form-control" name="userName"
 								placeholder="注册账号" />
 							<div class="nullSignUpName">请输入账号</div>
-							<div class="exsitName">账号已存在</div>
+							<div class="exsitName">账号已注册</div>
 							<div class="availableName">
 								<span class="glyphicon glyphicon-ok"></span> 账号可用
 							</div>
@@ -94,7 +94,7 @@
 	<script type="text/javascript">
 		var signupname = 0;
 		var signuppwd = 0;
-		$('#signUpName').blur(function() {
+		$('#signUpName').blur(function() {//注册账号输入框失去焦点的时候即可执行
 			if ($('#signUpName').val() == "") {
 				$('.nullSignUpName').show();
 			} else {
@@ -110,9 +110,9 @@
 					success : function(data) {
 						console.log(data['status']);
 						if (data['status'] == "1") {
-							$('.exsitName').show();
+							$('.exsitName').show();//显示账号已被注册
 						} else {
-							$('.availableName').show();
+							$('.availableName').show();//显示账号可以使用
 							signupname = 1;
 						}
 					}
@@ -181,9 +181,7 @@
 						location.href = url;//跳转至主页面
 					}
 				});
-			}
-
-		});
+			}});
 
 		$('#login').click(function() {
 			params = {

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %> 
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -50,10 +50,11 @@
 	<div class="col-sm-6" style="width: 100%;">
 		<div class="tabbable" style="width: 800px; margin: 0 auto;">
 			<ul class="nav nav-tabs" id="myTab">
-				<li id="enter1" class="active"><a data-toggle="tab" href="#home"> 手工录入
-				</a></li>
+				<li id="enter1" class="active"><a data-toggle="tab"
+					href="#home"> 手工录入 </a></li>
 
-				<li id="enter2"><a data-toggle="tab" href="#profile"> 表格导入 </a></li>
+				<li id="enter2"><a data-toggle="tab" href="#profile"> 表格导入
+				</a></li>
 
 			</ul>
 
@@ -115,18 +116,17 @@
 				</div>
 
 				<div id="profile" class="tab-pane">
-				<div class="dataExcelEnter">
-				<span class="glyphicon glyphicon-download-alt"></span>
-					<a href="Files/template.xls" >数据录入模板下载</a> 
+					<div class="dataExcelEnter">
+						<span class="glyphicon glyphicon-download-alt"></span> <a
+							href="Files/template.xls">数据录入模板下载</a>
 					</div>
-					<form action="getFile.action" method="post" onsubmit="return check_file()"
-						enctype="multipart/form-data">
+					<form action="getFile.action" method="post"
+						onsubmit="return check_file()" enctype="multipart/form-data">
 						<%-- 类型enctype用multipart/form-data，这样可以把文件中的数据作为流式数据上传，不管是什么文件类型，均可上传。--%>
 						<label class="dataExcelEnter">请选择要上传的EXCEL文件</label> <input
 							type="file" id="uploadfile" name="file" size="50"
 							class="dataExcelEnter"> <input type="submit"
-							class="btn btn-primary dataExcelEnter" 
-							value="提交">
+							class="btn btn-primary dataExcelEnter" value="提交">
 					</form>
 					<s:fielderror id="errormsg" class="dataErrorMsg"></s:fielderror>
 				</div>
@@ -218,21 +218,20 @@
 						alert("插入成功");
 					}
 				});
-			}
-			;
+			};
 		});
-		function check_file(){  
-	        var fileName = $('#uploadfile').val();  //获取文件名
-	        var file_suffix = fileName.substr(fileName.length-3);//获取后缀名   
-	        //在这里进行判断，如果上传的文件类型不是你所规定的文件后缀类型，则返回false，否则return或者什么也不写，会提交到后台  
-	        if(file_suffix != "xls"){  
-	            alert("您上传的文件类型不被允许，请重传，只允许上传.xls文件");  
-	            return false;  
-	        }  
-	    }  
-		window.onload=function(){
+		function check_file() {
+			var fileName = $('#uploadfile').val(); //获取文件名
+			var file_suffix = fileName.substr(fileName.length - 3);//获取后缀名   
+			//在这里进行判断，如果上传的文件类型不是你所规定的文件后缀类型，则返回false，否则return或者什么也不写，会提交到后台  
+			if (file_suffix != "xls") {
+				alert("您上传的文件类型不被允许，请重传，只允许上传.xls文件");
+				return false;
+			}
+		}
+		window.onload = function() {
 			console.log($('.dataErrorMsg').html());
-			if($(".dataErrorMsg").val()!=null){
+			if ($(".dataErrorMsg").val() != null) {
 				$('#enter1').removeClass("active");
 				$('#home').removeClass("active");
 				$('#profile').addClass("active");

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -81,10 +81,10 @@ body, html, #allmap {
 	map.addControl(geolocationControl);
 	map.addControl(top_left_control);
 	map.addControl(top_left_navigation);
-	// 随机向地图添加25个标注
 	var datalist;
 	var k = 0;
 	var convertor = new BMap.Convertor();
+	//百度地图提供的坐标转换回调函数
 	function translateOne(pointArr, stnm) {
 		convertor.translate(pointArr, 1, 5, function(data) {
 			if (data.status === 0) {

@@ -72,23 +72,20 @@ public class GetFileAction extends ActionSupport {
 		dao = (GetDataDAO) SpringContextUtil.getBean("getDataDAO");
 		idd = (InsertDataDAO) SpringContextUtil.getBean("getInsertDataDAO");
 		try {
-			FileInputStream fis = new FileInputStream(file);
+			FileInputStream fis = new FileInputStream(file);//获取输入流文件
 			jxl.Workbook rwb = Workbook.getWorkbook(fis);
-			Sheet[] sheet = rwb.getSheets();
-			for (int i = 0; i < sheet.length; i++) {
+			Sheet[] sheet = rwb.getSheets();//获得Excel文件组
+			for (int i = 0; i < sheet.length; i++) {//开始遍历Excel文件
 				Sheet rs = rwb.getSheet(i);
-				for (int j = 1; j < rs.getRows(); j++) {
+				for (int j = 1; j < rs.getRows(); j++) {//开始遍历Excel文件行内容
 					Cell[] cells = rs.getRow(j);
 					insertStation = cells[0].getContents();
-					String stationId = dao.getStationId(insertStation);
+					String stationId = dao.getStationId(insertStation);//获得插入站点编号
 					time = cells[1].getContents();
 					data = Double.parseDouble(cells[2].getContents());
 					stationId = dao.getStationId(insertStation);
 					insertFlag = dao.getExists(stationId);
-					System.out.println(insertFlag);
-					System.out.println(stationId);
-					System.out.println(time);
-					System.out.println(data);
+					//进行插入操作
 					 if(insertFlag.equals("1")){
 					 idd.addRiverData(stationId,time,data);
 					 }
@@ -102,7 +99,7 @@ public class GetFileAction extends ActionSupport {
 			}
 			fis.close();
 		} catch (Exception e) {
-			this.addFieldError("errormsg", "文件内容错误");
+			this.addFieldError("errormsg", "文件内容错误");//如果文件内容不符合格式，返回错误
 			return ERROR;
 		}
 		return SUCCESS;
