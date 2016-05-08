@@ -42,7 +42,10 @@
 			</div>
 		</div>
 	</div>
-	<div class="jumbotron" style="margin:0 30px;padding:20px;">
+	<div style="margin:0 30px">
+	<img style="width:100%;" src="../MyGraduationProject/Images/1.png" />
+	</div>
+	<div class="jumbotron" style="margin:0 30px 30px 30px;padding:20px;">
 		<h2>基于大数据的城市防汛预警系统</h2>
 		<p style="margin-top: 30px;line-height:30px;text-indent:2em">基于大数据的城市防汛预警系统是通过对城市河道、水库、降雨量等数据进行综合收集和整理，为城市突发水涝灾害预防预警提供重要的数据基础，实现对重点区域的有效监控，建立和优化防汛决策的基础数据库，智能化地向城市防灾减灾应急中心提出预测、预报和预警等决策分析结果。系统的主要功能模块包括防汛基础数据获取、水位数据分析、雨量数据分析、实时展示、分类统计和防汛预警等。</p>
 		<!-- <p>

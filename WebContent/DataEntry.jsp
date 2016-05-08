@@ -60,7 +60,7 @@
 
 			<div class="tab-content" style="padding-bottom: 50px;">
 				<div id="home" class="clearfix tab-pane in active">
-					<div class="myfloat">
+					<div class="myfloat" id="station_input">
 						<p id="stationType"
 							style="display: none; padding-left: 180px; padding-bottom: 5px;"></p>
 						<div class="labelDiv">
@@ -81,7 +81,7 @@
 						style="margin-top: 80px; text-align: center; width: 330px; display: none;">
 						<img src="../MyGraduationProject/Images/loader28.gif" />
 					</div>
-					<div class="myfloat" style="display: none;">
+					<div class="myfloat" id="time_input" style="display: none;">
 						<div class="labelDiv">
 							<label class="myLabel">记录时间</label>
 						</div>
@@ -95,7 +95,7 @@
 						</div>
 						<label id="time_error" class="error_message">请选择时间</label>
 					</div>
-					<div class="myfloat" style="display: none;">
+					<div class="myfloat" id="data_input" style="display: none;">
 						<div class="labelDiv">
 							<label id="datatype" class="myLabel">输入数据</label>
 						</div>
@@ -106,6 +106,7 @@
 							</div>
 						</div>
 						<label id="data_error" class="error_message">请输入数据</label>
+						<label id="type_error" class="error_message">数据类型不正确</label>
 					</div>
 					<div class="myfloat"
 						style="display: none; margin-top: 50px; text-align: center;">
@@ -193,13 +194,16 @@
 			$('#station_error').hide();
 			$('#time_error').hide();
 			$('#data_error').hide();
+			$('#type_error').hide();
 			if ($('#o').val() == "") {
 				$('#station_error').show();
 			} else if ($('#datetimepicker').val() == "") {
 				$('#time_error').show();
 			} else if ($('#datainput').val() == "") {
 				$('#data_error').show();
-			} else {
+			}else if(isNaN($('#datainput').val())==true){
+				$('#type_error').show();
+			}else {
 				var insertStation = $('#o').val();
 				var time = $('#datetimepicker').val();
 				var data = $('#datainput').val();
@@ -216,6 +220,12 @@
 					data : params,
 					success : function(data) {
 						alert("插入成功");
+						$('#datetimepicker').val(null);
+						$('#datainput').val(null);
+						$('.myfloat').hide();
+						$('#o').val(null);
+						$('#station_input').show();
+						$('#stationType').hide();
 					}
 				});
 			};

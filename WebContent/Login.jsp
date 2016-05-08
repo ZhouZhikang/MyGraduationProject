@@ -210,6 +210,7 @@
 								$('.errorPwd').show();//显示密码错误提示
 							} else if (data['status'] == "验证通过") {
 								url = "Homepage.jsp";
+								setCookie('username',$('#loginName').val(),1);
 								location.href = url;//跳转至主页面
 							}
 						}
@@ -217,6 +218,13 @@
 				}
 			}
 		});
+		function setCookie(c_name,value,expiredays)
+		{
+		var exdate=new Date()
+		exdate.setDate(exdate.getDate()+expiredays)
+		document.cookie=c_name+ "=" +escape(value)+
+		((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+		}
 	</script>
 </body>
 </html>
