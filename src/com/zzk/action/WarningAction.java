@@ -208,7 +208,7 @@ public class WarningAction extends ActionSupport{
 		do {
 			int idx = random.nextInt(data.length-inputCount-1);
 			bp.train(inputData[idx], outputData[idx]);
-		} while(bp.optErrSum > 0.00000001);
+		} while(bp.optErrSum > 0.0000001);
 		
 		System.out.println("训练完毕!!");
 		System.out.println(min);
